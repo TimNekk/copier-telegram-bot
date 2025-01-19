@@ -9,8 +9,8 @@
              </picture>
         </a>
         <picture>
-           <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 -- 3.13-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
-           <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 -- 3.13-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+           <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+           <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
            <img alt="Python 3.9 - 3.13" />
          </picture>
         <a href="https://github.com/astral-sh/ruff">
