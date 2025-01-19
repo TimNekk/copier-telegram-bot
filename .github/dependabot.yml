@@ -1,0 +1,34 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/template"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️"
+    pull-request-branch-name:
+      separator: "-"
+    pull-request-title:
+      prefix: "🔀"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "pip"
+    directory: "/template"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "⬆️"
+    pull-request-branch-name:
+      separator: "-"
+    pull-request-title:
+      prefix: "🔀"
+    groups:
+      dev-dependencies:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 10
+    file-type: "requirements-dev"
