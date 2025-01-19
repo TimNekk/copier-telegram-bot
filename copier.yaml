@@ -7,6 +7,7 @@ _jinja_extensions:
     - extensions/context.py:ContextUpdater
     - extensions/slugify.py:SlugifyExtension
     - extensions/is_installed.py:IsInstalledExtension
+    - extensions/is_valid.py:IsValidExtension
 
 _tasks:
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
@@ -29,17 +30,30 @@ project_slug:
     type: str
     help: "Enter your project's slug"
     default: "{{ project_name|slugify }}"
-    validator: "{% if project_slug.strip() == '' %}Project name cannot be empty{% endif %}"
+    validator: "{% if not project_slug.strip()|is_valid_slug %}Invalid project's slug (must contain only lowercase letters, numbers, and hyphens; no spaces or special characters allowed; cannot start or end with a hyphen){% endif %}"
 
 project_version:
     type: str
     help: "Enter your project's version"
     default: "0.1.0"
+    validator: "{% if not project_version.strip()|is_valid_version %}Invalid project's version (see PEP 440 https://peps.python.org/pep-0440/){% endif %}"
 
 project_description:
     type: str
-    help: "Describe your project briefly"
+    help: "Describe your project briefly (optional)"
     placeholder: Telegram bot that [main function] to help users [primary benefit]
+
+project_author_name:
+    type: str
+    help: "Enter your full name (optional)"
+    placeholder: "John Doe"
+
+project_author_email:
+    type: str
+    help: "Enter your email address (optional)"
+    placeholder: "user@example.com"
+    when: "{{ project_author_name.strip() != '' }}"
+    validator: "{% if project_author_email.strip() != '' and not project_author_email.strip()|is_valid_email %}Invalid email{% endif %}"
 
 package_manager:
     type: str
