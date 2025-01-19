@@ -43,25 +43,29 @@ def get_python_path(version: str) -> str | None:
     return None
 
 
+def install_dependencies(filename: str, dev: bool = False) -> None:
+    with open(filename, "r") as file:
+        requirements = file.readlines()
+    cleaned_requirements = []
+    for req in requirements:
+        req = req.strip()
+        if req and not req.strip().startswith("#"):
+            req = re.sub(r';sys_platform\s*==\s*"[^"]*"', "", req)
+            req = re.sub(r';sys_platform\s*!=\s*"[^"]*"', "", req)
+            cleaned_requirements.append(req.strip())
+    if cleaned_requirements:
+        subprocess.run(["poetry", "add"] + cleaned_requirements + (["-G", "dev"] if dev else []), check=True)
+
 print("Creating virtual environment...")
 subprocess.run(["poetry", "env", "use", get_python_path(python_version)], check=True)
 print("Created virtual environment!")
 
 print("Installing dependencies...")
-with open("requirements.txt", "r") as file:
-    requirements = file.readlines()
-cleaned_requirements = []
-for req in requirements:
-    req = req.strip()
-    if req and not req.strip().startswith("#"):
-        req = re.sub(r';sys_platform\s*==\s*"[^"]*"', "", req)
-        req = re.sub(r';sys_platform\s*!=\s*"[^"]*"', "", req)
-        cleaned_requirements.append(req.strip())
-
-if cleaned_requirements:
-    subprocess.run(["poetry", "add"] + cleaned_requirements, check=True)
+install_dependencies("requirements.txt")
+install_dependencies("requirements-dev.txt", dev=True)
 print("Installed dependencies!")
 
 print("Removing requirements.txt...")
 os.remove("./requirements.txt")
+os.remove("./requirements-dev.txt")
 print("Removed requirements.txt!")
