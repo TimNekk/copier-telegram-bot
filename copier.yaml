@@ -1,0 +1,76 @@
+# Settings
+
+_subdirectory: template
+
+_jinja_extensions:
+    - copier_templates_extensions.TemplateExtensionLoader
+    - extensions/context.py:ContextUpdater
+    - extensions/slugify.py:SlugifyExtension
+    - extensions/is_installed.py:IsInstalledExtension
+
+_tasks:
+    - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
+      when: "{{ package_manager == 'uv' }}"
+    - command: ["{{ _copier_python }}", "tasks/poetry_install.py", "{{ python_version }}"]
+      when: "{{ package_manager == 'poetry' }}"
+    - command: ["{{ _copier_python }}", "tasks/pip_install.py", "{{ python_version }}"]
+      when: "{{ package_manager == 'pip' }}"
+    - command: ["{{ _copier_python }}", "tasks/cleanup.py"]
+
+# Answers
+
+project_name:
+    type: str
+    help: "Enter your project's name"
+    placeholder: My Telegram Bot
+    validator: "{% if project_name.strip() == '' %}Project name cannot be empty{% endif %}"
+
+project_slug:
+    type: str
+    help: "Enter your project's slug"
+    default: "{{ project_name|slugify }}"
+    validator: "{% if project_slug.strip() == '' %}Project name cannot be empty{% endif %}"
+
+project_version:
+    type: str
+    help: "Enter your project's version"
+    default: "0.1.0"
+
+project_description:
+    type: str
+    help: "Describe your project briefly"
+    placeholder: Telegram bot that [main function] to help users [primary benefit]
+
+package_manager:
+    type: str
+    help: Which package manager do you want to use?
+    choices:
+        uv:
+            value: uv
+            validator: "{% if not 'uv'|is_installed %}not installed{% endif %}"
+        Poetry:
+            value: poetry
+            validator: "{% if not 'poetry'|is_installed %}not installed{% endif %}"
+        pip:
+            value: pip
+            validator: "{% if not 'pip'|is_installed %}not installed{% endif %}"
+
+python_version:
+    type: str
+    help: What version of Python do you want to use?
+    choices:
+        "3.12":
+            value: "3.12"
+            validator: "{% if package_manager in ['poetry', 'pip'] and not '3.12'|is_installed %}not installed{% endif %}"
+        "3.11":
+            value: "3.11"
+            validator: "{% if package_manager in ['poetry', 'pip'] and not '3.11'|is_installed %}not installed{% endif %}"
+        "3.10":
+            value: "3.10"
+            validator: "{% if package_manager in ['poetry', 'pip'] and not '3.10'|is_installed %}not installed{% endif %}"
+        "3.9":
+            value: "3.9"
+            validator: "{% if package_manager in ['poetry', 'pip'] and not '3.9'|is_installed %}not installed{% endif %}"
+        "3.8":
+            value: "3.8"
+            validator: "{% if package_manager in ['poetry', 'pip'] and not '3.8'|is_installed %}not installed{% endif %}"
