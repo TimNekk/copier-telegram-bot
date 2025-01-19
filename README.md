@@ -1,8 +1,34 @@
 <div align="center">
-    <h1><code>Telegram Bot Template</code></h1>
-    <p>powered by <a href="https://github.com/copier-org/copier">Copier</a></p>
+    <h1 "><code>Telegram Bot Template</code></h1>
+    <div>
+        <a href="https://github.com/copier-org/copier">
+            <picture>
+               <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-black.json&style=for-the-badge&labelColor=010409&color=1e242a" />
+               <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-black.json&style=for-the-badge&labelColor=010409&color=f0f1f2" />
+               <img alt="Copier" />
+             </picture>
+        </a>
+        <picture>
+           <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 -- 3.13-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+           <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 -- 3.13-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+           <img alt="Python 3.9 - 3.13" />
+         </picture>
+        <a href="https://github.com/astral-sh/ruff">
+            <picture>
+               <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Linted by Ruff-1e242a?style=for-the-badge&logoColor=30173d&labelColor=D7FF64&logo=ruff" />
+               <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Linted by Ruff-f0f1f2?style=for-the-badge&logoColor=30173d&labelColor=D7FF64&logo=ruff" />
+               <img alt="Linted by Ruff" />
+             </picture>
+        </a>
+        <a href="https://github.com/TimNekk/copier-telegram-bot/blob/main/LICENSE.md">
+            <picture>
+               <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Apache License 2.0-1e242a?style=for-the-badge&logoColor=1e242a&labelColor=white&logo=googledocs" />
+               <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Apache License 2.0-f0f1f2?style=for-the-badge&logoColor=white&labelColor=1f2328&logo=googledocs" />
+               <img alt="Apache License 2.0" />
+             </picture>
+        </a>
+    </div>
 </div>
-
 
 ## ✨ Features
 
