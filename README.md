@@ -1,4 +1,4 @@
-<div style="display: flex; flex-direction: column; align-items: center">
+<div align="center">
     <h1><code>Telegram Bot Template</code></h1>
     <p>powered by <a href="https://github.com/copier-org/copier">Copier</a></p>
 </div>
