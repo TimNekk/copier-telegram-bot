@@ -10,6 +10,7 @@ _jinja_extensions:
     - extensions/is_valid.py:IsValidExtension
 
 _tasks:
+    - command: ["{{ _copier_python }}", "tasks/filter_requirements.py", "{{ linter }}"]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"
     - command: ["{{ _copier_python }}", "tasks/poetry_install.py", "{{ python_version }}"]
@@ -88,3 +89,12 @@ python_version:
         "3.9":
             value: "3.9"
             validator: "{% if package_manager in ['poetry', 'pip'] and not '3.9'|is_installed %}not installed{% endif %}"
+
+linter:
+    type: str
+    help: Which linter do you want to use?
+    choices:
+        "ruff":
+            value: "ruff"
+        "None":
+            value: ""
