@@ -7,10 +7,10 @@ print("Created virtual environment!")
 
 print("Installing dependencies...")
 subprocess.run(["uv", "add", "-r", "requirements.txt"], check=True)
-subprocess.run(["uv", "add", "-r", "requirements-dev.txt", "--dev"], check=True)
+subprocess.run(["uv", "add", "-r", "dev-requirements.txt", "--dev"], check=True)
 print("Installed dependencies!")
 
 print("Removing requirements.txt...")
 os.remove("./requirements.txt")
-os.remove("./requirements-dev.txt")
+os.remove("./dev-requirements.txt")
 print("Removed requirements.txt!")

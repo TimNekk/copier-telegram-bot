@@ -62,10 +62,10 @@ print("Created virtual environment!")
 
 print("Installing dependencies...")
 install_dependencies("requirements.txt")
-install_dependencies("requirements-dev.txt", dev=True)
+install_dependencies("dev-requirements.txt", dev=True)
 print("Installed dependencies!")
 
 print("Removing requirements.txt...")
 os.remove("./requirements.txt")
-os.remove("./requirements-dev.txt")
+os.remove("./dev-requirements.txt")
 print("Removed requirements.txt!")
