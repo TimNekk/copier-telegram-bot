@@ -1,5 +1,6 @@
 import sys
 from typing import List
+from itertools import chain
 
 
 BASE_REQUIREMENTS = [
@@ -26,7 +27,7 @@ def keep_requirements(requirements_to_keep: List[str], file_path: str) -> None:
 
 
 print("Removing unused requirements...")
-requirements = sys.argv[1:] + BASE_REQUIREMENTS
+requirements = list(chain(*[arg.split() for arg in sys.argv[1:]])) + BASE_REQUIREMENTS
 keep_requirements(requirements, file_path="requirements.txt")
 keep_requirements(requirements, file_path="dev-requirements.txt")
 print("Removed unused requirements!")
