@@ -10,7 +10,7 @@ _jinja_extensions:
     - extensions/is_valid.py:IsValidExtension
 
 _tasks:
-    - command: ["{{ _copier_python }}", "tasks/filter_requirements.py", "{{ linter }}"]
+    - command: ["{{ _copier_python }}", "tasks/filter_requirements.py", "{{ linter }}", "{{ features|join(' ') }}"]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"
     - command: ["{{ _copier_python }}", "tasks/poetry_install.py", "{{ python_version }}"]
@@ -98,3 +98,11 @@ linter:
             value: "ruff"
         "None":
             value: ""
+
+features:
+    type: str
+    help: What features do you want to use?
+    multiselect: true
+    choices:
+        "just: a handy way to save and run project-specific commands":
+            value: "just"
