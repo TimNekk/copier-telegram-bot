@@ -1,0 +1,19 @@
+from __future__ import annotations
+
+from aiogram import Bot, Dispatcher
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
+
+from bot.core.settings import {% if settings_manager == 'pydantic-settings' %}Settings{% elif settings_manager == 'dynaconf' %}settings{% endif %}
+{% if settings_manager == 'pydantic-settings' %}
+settings = Settings()
+{% endif %}
+bot = Bot(
+    token=settings.bot.token{% if settings_manager == 'pydantic-settings' %}.get_secret_value(){% endif %},
+    default=DefaultBotProperties(
+        parse_mode=ParseMode.HTML,
+        link_preview_is_disabled=True,
+    ),
+)
+
+dp = Dispatcher()
