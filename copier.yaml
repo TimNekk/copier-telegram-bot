@@ -113,5 +113,20 @@ features:
     help: What features do you want to use?
     multiselect: true
     choices:
-        "just: a handy way to save and run project-specific commands":
+        "just | Handy way to save and run project-specific commands":
             value: "just"
+
+middlewares:
+    type: str
+    help: Which middlewares do you want to use?
+    multiselect: true
+    choices:
+        "Dependency      | Inject required dependencies into handler's data":
+            value: "dependency"
+        "Logging         | Detailed logging of all telegram bot events and updates":
+            value: "logging"
+        "Throttling      | Rate limit handling to prevent spam and abuse":
+            value: "throttling"
+        "Callback Answer | Automatically answer callback queries":
+            value: "callback_answer"
+    validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency Middleware is required to use Throttling Middleware{% endif %}"
