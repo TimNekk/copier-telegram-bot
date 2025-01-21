@@ -11,8 +11,9 @@ class BaseSettings(PydanticBaseSettings):
 
 class BotSettings(BaseSettings):
     token: SecretStr
+{%- if 'throttling' in middlewares %}
     rate_limit: NonNegativeFloat = Field(default=0.5)
-
+{%- endif %}
 
 class FileLogSettings(BaseSettings):
     name: str
