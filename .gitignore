@@ -172,3 +172,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Root project (not template)
+/pyproject.toml
+/uv.lock
