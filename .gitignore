@@ -176,3 +176,4 @@ cython_debug/
 # Root project (not template)
 /pyproject.toml
 /uv.lock
+/generated
