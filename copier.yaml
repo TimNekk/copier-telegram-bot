@@ -108,14 +108,6 @@ settings_manager:
         "Dynaconf":
             value: "dynaconf"
 
-features:
-    type: str
-    help: What features do you want to use?
-    multiselect: true
-    choices:
-        "just | Handy way to save and run project-specific commands":
-            value: "just"
-
 middlewares:
     type: str
     help: Which middlewares do you want to use?
@@ -130,3 +122,12 @@ middlewares:
         "Callback Answer | Automatically answer callback queries":
             value: "callback_answer"
     validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency Middleware is required to use Throttling Middleware{% endif %}"
+
+features:
+    type: str
+    help: What features do you want to use?
+    multiselect: true
+    choices:
+        "just | Handy way to save and run project-specific commands":
+            value: "just"
+
