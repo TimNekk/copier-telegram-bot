@@ -1,0 +1,27 @@
+from __future__ import annotations
+
+from pydantic import DirectoryPath, Field, NonNegativeFloat, SecretStr
+from pydantic_settings import BaseSettings as PydanticBaseSettings
+from pydantic_settings import SettingsConfigDict
+
+
+class BaseSettings(PydanticBaseSettings):
+    model_config = SettingsConfigDict(extra="allow")
+
+
+class BotSettings(BaseSettings):
+    token: SecretStr
+    rate_limit: NonNegativeFloat = Field(default=0.5)
+
+
+class FileLogSettings(BaseSettings):
+    name: str
+    directory: DirectoryPath
+    level: str
+
+
+class Settings(BaseSettings):
+    bot: BotSettings
+    file_log: FileLogSettings
+
+    model_config = SettingsConfigDict(env_nested_delimiter="__")
