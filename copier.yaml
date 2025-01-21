@@ -10,7 +10,7 @@ _jinja_extensions:
     - extensions/is_valid.py:IsValidExtension
 
 _tasks:
-    - command: ["{{ _copier_python }}", "tasks/filter_requirements.py", "{{ linter }}", "{{ features|join(' ') }}"]
+    - command: ["{{ _copier_python }}", "tasks/filter_requirements.py", "{{ linter }}", "{{ settings_manager }}", "{{ features|join(' ') }}"]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"
     - command: ["{{ _copier_python }}", "tasks/poetry_install.py", "{{ python_version }}"]
@@ -98,6 +98,15 @@ linter:
             value: "ruff"
         "None":
             value: ""
+
+settings_manager:
+    type: str
+    help: Which settings manager do you want to use?
+    choices:
+        "Pydantic Settings":
+            value: "pydantic-settings"
+        "Dynaconf":
+            value: "dynaconf"
 
 features:
     type: str
