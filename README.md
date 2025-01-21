@@ -80,13 +80,3 @@ If you have a suggestion that would make this better, please fork the repo and c
 ## 📝 License
 
 Distributed under the Apache License 2.0. See [`LICENSE`](./LICENSE.md) for more information.
-
-
-
-
-
-$env:BOT__TOKEN = "7519745748:AAGFsJRu1E9S-DywRyaP7mQ7zs9I2rGsAXM"
-$env:BOT__RATE_LIMIT = "0.5"
-$env:FILE_LOG__DIRECTORY = "/app/logs"
-$env:FILE_LOG__NAME = "bot.log"
-$env:FILE_LOG__LEVEL = "DEBUG"
