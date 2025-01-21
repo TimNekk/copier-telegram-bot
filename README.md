@@ -30,13 +30,30 @@
     </div>
 </div>
 
-## ✨ Features
+<!-- ## ✨ Features -->
+## 🚧 Work in progress
 
+- [x] Justfile
+- [x] Pyproject
+- [x] Ruff
+- [x] Dev requirements
+- [x] Aiogram
+- [x] UVLoop / WinLoop
+- [x] Pydantic Settings / Dynaconf
+- [x] Middlewares
+- [x] Handlers
+- [x] uv / Poetry / pip
 - [ ] Docker
 - [ ] Coolify Ready
-- [ ] Internationalization 
-- [ ] Ability to cache using decorator
+- [ ] Bot Internalization
+- [ ] Prompts Internalization
+- [ ] Cache Decorator
 - [ ] Database Migrations
+- [ ] Dependabot
+- [ ] Testing
+- [ ] Git
+- [ ] .template.env
+- [ ] Flake8 / wemake
 
 ## ⭐ Star History
 
@@ -63,3 +80,13 @@ If you have a suggestion that would make this better, please fork the repo and c
 ## 📝 License
 
 Distributed under the Apache License 2.0. See [`LICENSE`](./LICENSE.md) for more information.
+
+
+
+
+
+$env:BOT__TOKEN = "7519745748:AAGFsJRu1E9S-DywRyaP7mQ7zs9I2rGsAXM"
+$env:BOT__RATE_LIMIT = "0.5"
+$env:FILE_LOG__DIRECTORY = "/app/logs"
+$env:FILE_LOG__NAME = "bot.log"
+$env:FILE_LOG__LEVEL = "DEBUG"
