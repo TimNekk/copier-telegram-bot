@@ -31,12 +31,15 @@ max-args = 5
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+    "ANN401", # flake8-annotations: Dynamically typed expressions (typing.Any) are disallowed
+    "ARG001", # flake8-unused-arguments: Unused function argument
+    "COM812", # flake8-commas: 	Trailing comma missing
     "D1",     # pydocstyle: Missing docstring in ...
     "D203",   # pydocstyle: 1 blank line required before class docstring (D211 is used instead)
     "D213",   # pydocstyle: Multi-line docstring summary should start at the second line (D212 is used instead)
+    "FIX",    # flake8-fixme: Line contains ..., consider resolving the issue
+    "RUF001", # Ruff-specific: Checks for ambiguous Unicode characters in strings
     "TD002",  # flake8-todos: Missing author in TODO
     "TD003",  # flake8-todos: Missing issue link for this TODO
-    "ANN401", # flake8-annotations: Dynamically typed expressions (typing.Any) are disallowed
-    "RUF001", # Ruff-specific: Checks for ambiguous Unicode characters in strings
 ]
 {%- endif %}
