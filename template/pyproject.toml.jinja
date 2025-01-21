@@ -1,0 +1,42 @@
+[{% if package_manager in ['uv', 'pip'] %}project{% elif package_manager == 'poetry' %}tool.poetry{% endif %}]
+name = "{{ project_slug }}"
+version = "{{ project_version }}"
+{%- if project_description != '' %}
+description = "{{ project_description }}"
+{%- endif %}
+{%- if project_author != '' %}
+authors = [{% if package_manager in ['uv', 'pip'] %}{{ project_author }}{% elif package_manager == 'poetry' %}"{{ project_author }}"{% endif %}]
+{%- endif %}
+readme = "README.md"
+{%- if package_manager in ['uv', 'pip'] %}
+requires-python = ">={{ python_version }}"
+{% endif -%}
+{%- if package_manager == 'poetry' %}
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">={{ python_version }},<4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+{% endif -%}
+{% if linter == 'ruff' %}
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.pylint]
+max-args = 5
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D1",     # pydocstyle: Missing docstring in ...
+    "D203",   # pydocstyle: 1 blank line required before class docstring (D211 is used instead)
+    "D213",   # pydocstyle: Multi-line docstring summary should start at the second line (D212 is used instead)
+    "TD002",  # flake8-todos: Missing author in TODO
+    "TD003",  # flake8-todos: Missing issue link for this TODO
+    "ANN401", # flake8-annotations: Dynamically typed expressions (typing.Any) are disallowed
+    "RUF001", # Ruff-specific: Checks for ambiguous Unicode characters in strings
+]
+{%- endif %}
