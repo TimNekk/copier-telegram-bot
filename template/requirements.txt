@@ -1,5 +1,5 @@
 aiogram==3.17.0
-dynaconf==3.2.6
+dynaconf==3.2.7
 loguru==0.7.3
 pydantic-settings==2.7.1
 uvloop==0.21.0 ; sys_platform != "win32"
