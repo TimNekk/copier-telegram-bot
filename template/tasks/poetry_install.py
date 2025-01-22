@@ -5,6 +5,7 @@ import sys
 
 python_version = sys.argv[1]
 
+
 def get_python_path(version: str) -> str | None:
     if sys.version.startswith(version):
         return sys.executable
@@ -54,7 +55,11 @@ def install_dependencies(filename: str, dev: bool = False) -> None:
             req = re.sub(r';sys_platform\s*!=\s*"[^"]*"', "", req)
             cleaned_requirements.append(req.strip())
     if cleaned_requirements:
-        subprocess.run(["poetry", "add"] + cleaned_requirements + (["-G", "dev"] if dev else []), check=True)
+        subprocess.run(
+            ["poetry", "add"] + cleaned_requirements + (["-G", "dev"] if dev else []),
+            check=True,
+        )
+
 
 print("Creating virtual environment...")
 subprocess.run(["poetry", "env", "use", get_python_path(python_version)], check=True)
