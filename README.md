@@ -30,13 +30,30 @@
     </div>
 </div>
 
-## ✨ Features
+<!-- ## ✨ Features -->
+## 🚧 Work in progress
 
+- [x] Justfile
+- [x] Pyproject
+- [x] Ruff
+- [x] Dev requirements
+- [x] Aiogram
+- [x] UVLoop / WinLoop
+- [x] Pydantic Settings / Dynaconf
+- [x] Middlewares
+- [x] Handlers
+- [x] uv / Poetry / pip
 - [ ] Docker
 - [ ] Coolify Ready
-- [ ] Internationalization 
-- [ ] Ability to cache using decorator
+- [ ] Bot Internalization
+- [ ] Prompts Internalization
+- [ ] Cache Decorator
 - [ ] Database Migrations
+- [ ] Dependabot
+- [ ] Testing
+- [ ] Git
+- [ ] .template.env
+- [ ] Flake8 / wemake
 
 ## ⭐ Star History
 
