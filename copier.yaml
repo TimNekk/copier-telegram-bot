@@ -10,7 +10,16 @@ _jinja_extensions:
     - extensions/is_valid.py:IsValidExtension
 
 _tasks:
-    - command: ["{{ _copier_python }}", "tasks/filter_requirements.py", "{{ linter }}", "{{ settings_manager }}", "{{ features|join(' ') }}"]
+    - command: ["{{ _copier_python }}", "tasks/git_init.py"]
+      when: "{{ git_init }}"
+    - command:
+          [
+              "{{ _copier_python }}",
+              "tasks/filter_requirements.py",
+              "{{ linter }}",
+              "{{ settings_manager }}",
+              "{{ features|join(' ') }}",
+          ]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"
     - command: ["{{ _copier_python }}", "tasks/poetry_install.py", "{{ python_version }}"]
@@ -131,3 +140,8 @@ features:
         "just | Handy way to save and run project-specific commands":
             value: "just"
 
+git_init:
+    type: bool
+    help: Do you want to initialize git?
+    default: true
+    when: "{{ 'git'|is_installed }}"

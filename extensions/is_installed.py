@@ -55,6 +55,8 @@ def is_installed(value) -> bool:
         return command_exists(["poetry", "--version"])
     elif value == "pip":
         return command_exists(["pip", "--version"]) or command_exists(["pip3", "--version"])
+    elif value == "git":
+        return command_exists(["git", "--version"])
     elif value in ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "3.15"]:
         return value in get_python_versions()
     else:

@@ -43,6 +43,7 @@
 - [x] Middlewares
 - [x] Handlers
 - [x] uv / Poetry / pip
+- [x] Git
 - [ ] Docker
 - [ ] Coolify Ready
 - [ ] Bot Internalization
@@ -51,7 +52,6 @@
 - [ ] Database Migrations
 - [ ] Dependabot
 - [ ] Testing
-- [ ] Git
 - [ ] .template.env
 - [ ] Flake8 / wemake
 
