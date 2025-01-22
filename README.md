@@ -44,8 +44,10 @@
 - [x] Handlers
 - [x] uv / Poetry / pip
 - [x] Git
-- [ ] Docker
-- [ ] Coolify Ready
+- [x] Docker Compose
+- [x] Dockerfile (for uv)
+- [ ] Dockerfile (for Poetry)
+- [ ] Dockerfile (for pip)
 - [ ] Bot Internalization
 - [ ] Prompts Internalization
 - [ ] Cache Decorator
