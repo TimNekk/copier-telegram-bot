@@ -18,7 +18,10 @@ def keep_requirements(requirements_to_keep: List[str], file_path: str) -> None:
         updated_lines = [
             line
             for line in lines
-            if any(req.strip().lower() == line.split("==")[0].strip().lower() for req in requirements_to_keep)
+            if any(
+                req.strip().lower() == line.split("==")[0].strip().lower()
+                for req in requirements_to_keep
+            )
         ]
         with open(file_path, "w") as file:
             file.writelines(updated_lines)
