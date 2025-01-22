@@ -1,0 +1,21 @@
+services:
+  bot:
+    image: ${COMPOSE_PROJECT_NAME}-bot:latest
+    build:
+      context: .
+    container_name: ${COMPOSE_PROJECT_NAME}-bot
+    env_file:
+      - path: ./.env
+        required: false
+    restart: unless-stopped
+    volumes:
+      - logs_data:${FILE_LOG__DIRECTORY}
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  logs_data:
