@@ -56,6 +56,7 @@
 - [ ] Testing
 - [ ] .template.env
 - [ ] Flake8 / wemake
+- [ ] Create develop branch
 
 ## ⭐ Star History
 
