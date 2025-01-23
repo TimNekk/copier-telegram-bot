@@ -12,7 +12,7 @@ router = Router()
 
 
 @router.message(CommandStart())
-async def process_start_command(
+async def handle_start_command(
     message: types.Message,
 ) -> None:
     await message.answer("👋")
