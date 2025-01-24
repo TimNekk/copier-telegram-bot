@@ -45,9 +45,7 @@
 - [x] uv / Poetry / pip
 - [x] Git
 - [x] Docker Compose
-- [x] Dockerfile (for uv)
-- [x] Dockerfile (for Poetry)
-- [ ] Dockerfile (for pip)
+- [x] Dockerfile
 - [ ] Bot Internalization
 - [ ] Prompts Internalization
 - [ ] Cache Decorator

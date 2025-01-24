@@ -1,4 +1,4 @@
-FROM {% if package_manager == 'uv' %}ghcr.io/astral-sh/uv:python{{ python_version }}-bookworm-slim{% elif package_manager == 'poetry' %}python:{{ python_version }}-slim-bookworm{% endif %} AS builder
+FROM {% if package_manager == 'uv' %}ghcr.io/astral-sh/uv:python{{ python_version }}-bookworm-slim{% elif package_manager == 'poetry' or package_manager == 'pip' %}python:{{ python_version }}-slim-bookworm{% endif %} AS builder
 
 WORKDIR /app
 {% if package_manager == 'uv' %}
@@ -20,6 +20,13 @@ COPY pyproject.toml poetry.lock ./
 
 RUN --mount=type=cache,target=/root/.cache/pypoetry \
     poetry install --no-dev --no-root
+{%- elif package_manager == 'pip' %}
+ENV VIRTUAL_ENV=/app/.venv
+RUN python -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 {%- endif %}
 
 COPY bot/ ./bot
