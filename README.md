@@ -46,7 +46,7 @@
 - [x] Git
 - [x] Docker Compose
 - [x] Dockerfile (for uv)
-- [ ] Dockerfile (for Poetry)
+- [x] Dockerfile (for Poetry)
 - [ ] Dockerfile (for pip)
 - [ ] Bot Internalization
 - [ ] Prompts Internalization

@@ -1,12 +1,26 @@
-FROM ghcr.io/astral-sh/uv:python{{ python_version }}-bookworm-slim AS builder
+FROM {% if package_manager == 'uv' %}ghcr.io/astral-sh/uv:python{{ python_version }}-bookworm-slim{% elif package_manager == 'poetry' %}python:{{ python_version }}-slim-bookworm{% endif %} AS builder
 
 WORKDIR /app
+{% if package_manager == 'uv' %}
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project --no-dev
+{%- elif package_manager == 'poetry' %}
+ENV POETRY_VERSION=1.8.5 \
+    POETRY_HOME=/opt/poetry \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1
+
+RUN pip install poetry==${POETRY_VERSION}
+
+COPY pyproject.toml poetry.lock ./
+
+RUN --mount=type=cache,target=/root/.cache/pypoetry \
+    poetry install --no-dev --no-root
+{%- endif %}
 
 COPY bot/ ./bot
 
@@ -31,7 +45,8 @@ COPY entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//' /entrypoint.sh && \
     chmod +x /entrypoint.sh
 
-COPY --from=builder /app /app
+COPY --from=builder /app/.venv /app/.venv
+COPY --from=builder /app/bot /app/bot
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["python", "-m", "bot"]
