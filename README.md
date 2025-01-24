@@ -46,6 +46,10 @@
 - [x] Git
 - [x] Docker Compose
 - [x] Dockerfile
+- [ ] Redis
+- [ ] Postgres
+- [ ] Aiogram Dialogs
+- [ ] Aioscheduler
 - [ ] Bot Internalization
 - [ ] Prompts Internalization
 - [ ] Cache Decorator
