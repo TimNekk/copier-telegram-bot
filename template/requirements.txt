@@ -1,7 +1,9 @@
 aiogram==3.17.0
 dynaconf==3.2.7
 loguru==0.7.3
+psycopg[binary]==3.2.4
 pydantic-settings==2.7.1
 redis==5.2.1
+sqlalchemy==2.0.37
 uvloop==0.21.0 ; sys_platform != "win32"
 winloop==0.1.8 ; sys_platform == "win32"
