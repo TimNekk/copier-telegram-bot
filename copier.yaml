@@ -19,6 +19,8 @@ _tasks:
               "{{ linter }}",
               "{{ settings_manager }}",
               "{{ features|join(' ') }}",
+              "{% if database == 'postgres' %}psycopg[binary]{% endif %}",
+              "{% if database == 'postgres' %}sqlalchemy{% endif %}",
           ]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"
@@ -69,13 +71,13 @@ package_manager:
     type: str
     help: Which package manager do you want to use?
     choices:
-        uv:
+        "uv     | Blazing-fast Python package installer and resolver":
             value: uv
             validator: "{% if not 'uv'|is_installed %}not installed{% endif %}"
-        Poetry:
+        "Poetry | Python dependency management and packaging made easy":
             value: poetry
             validator: "{% if not 'poetry'|is_installed %}not installed{% endif %}"
-        pip:
+        "pip    | Standard package installer for Python packages":
             value: pip
             validator: "{% if not 'pip'|is_installed %}not installed{% endif %}"
 
@@ -99,23 +101,24 @@ python_version:
             value: "3.9"
             validator: "{% if package_manager in ['poetry', 'pip'] and not '3.9'|is_installed %}not installed{% endif %}"
 
-linter:
+database:
     type: str
-    help: Which linter do you want to use?
+    help: Which database do you want to use?
     choices:
-        "ruff":
-            value: "ruff"
-        "None":
+        "Postgres | Powerful open-source relational database with ACID compliance and advanced features":
+            value: "postgres"
+        "None     | Do not configure a database for this project":
             value: ""
 
-settings_manager:
+features:
     type: str
-    help: Which settings manager do you want to use?
+    help: What features do you want to use?
+    multiselect: true
     choices:
-        "Pydantic Settings":
-            value: "pydantic-settings"
-        "Dynaconf":
-            value: "dynaconf"
+        "redis | Persistent key-value storage for maintaining bot state across restarts":
+            value: "redis"
+        "just  | Handy way to save and run project-specific commands":
+            value: "just"
 
 middlewares:
     type: str
@@ -132,15 +135,24 @@ middlewares:
             value: "callback_answer"
     validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency Middleware is required to use Throttling Middleware{% endif %}"
 
-features:
+linter:
     type: str
-    help: What features do you want to use?
-    multiselect: true
+    help: Which linter do you want to use?
     choices:
-        "redis | Persistent key-value storage for maintaining bot state across restarts":
-            value: "redis"
-        "just | Handy way to save and run project-specific commands":
-            value: "just"
+        "ruff | Blazing-fast Rust-based linter replacing Flake8, isort, and autoformatters":
+            value: "ruff"
+        "None | Skip linter configuration for this project":
+            value: ""
+
+settings_manager:
+    type: str
+    help: Which settings manager do you want to use?
+    choices:
+        "Pydantic Settings | Modern type-safe configuration using Python type annotations":
+            value: "pydantic-settings"
+        "Dynaconf          | Multi-source configuration manager with environment-aware settings":
+            value: "dynaconf"
+
 git_init:
     type: bool
     help: Do you want to initialize git?
