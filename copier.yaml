@@ -137,6 +137,8 @@ features:
     help: What features do you want to use?
     multiselect: true
     choices:
+        "redis | Persistent key-value storage for maintaining bot state across restarts":
+            value: "redis"
         "just | Handy way to save and run project-specific commands":
             value: "just"
 git_init:

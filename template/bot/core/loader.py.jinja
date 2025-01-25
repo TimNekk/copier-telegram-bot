@@ -3,6 +3,13 @@ from __future__ import annotations
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+{%- if 'redis' in features %}
+from aiogram.fsm.storage.base import DefaultKeyBuilder
+from aiogram.fsm.storage.redis import RedisStorage
+{%- endif %}
+{%- if 'redis' in features %}
+from redis.asyncio import ConnectionPool, Redis
+{%- endif %}
 
 from bot.core.settings import {% if settings_manager == 'pydantic-settings' %}Settings{% elif settings_manager == 'dynaconf' %}settings{% endif %}
 {% if settings_manager == 'pydantic-settings' %}
@@ -15,5 +22,26 @@ bot = Bot(
         link_preview_is_disabled=True,
     ),
 )
+{% if 'redis' in features %}
+redis_client = Redis(
+    connection_pool=ConnectionPool(
+        host="redis",
+        port=settings.redis.port,
+        db=0,
+    ),
+)
 
+storage = RedisStorage(
+    redis=redis_client,
+    key_builder=DefaultKeyBuilder(
+        with_destiny=True,
+    ),
+)
+{%- endif %}
+{% if 'redis' in features %}
+dp = Dispatcher(
+    storage=storage,
+)
+{% else %}
 dp = Dispatcher()
+{% endif %}

@@ -46,7 +46,7 @@
 - [x] Git
 - [x] Docker Compose
 - [x] Dockerfile
-- [ ] Redis
+- [x] Redis
 - [ ] Postgres
 - [ ] Aiogram Dialogs
 - [ ] Aioscheduler

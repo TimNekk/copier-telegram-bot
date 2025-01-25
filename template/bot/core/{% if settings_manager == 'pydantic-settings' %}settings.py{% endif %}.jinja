@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydantic import DirectoryPath, Field, NonNegativeFloat, SecretStr
+from pydantic import DirectoryPath, Field, NonNegativeFloat, {% if 'redis' in features %}PositiveInt, {% endif %}SecretStr
 from pydantic_settings import BaseSettings as PydanticBaseSettings
 from pydantic_settings import SettingsConfigDict
 
@@ -15,14 +15,22 @@ class BotSettings(BaseSettings):
     rate_limit: NonNegativeFloat = Field(default=0.5)
 {%- endif %}
 
+
 class FileLogSettings(BaseSettings):
     name: str
     directory: DirectoryPath
     level: str
 
+{% if 'redis' in features %}
+class RedisSettings(BaseSettings):
+    port: PositiveInt
+{% endif %}
 
 class Settings(BaseSettings):
     bot: BotSettings
     file_log: FileLogSettings
+{%- if 'redis' in features %}
+    redis: RedisSettings
+{%- endif %}
 
     model_config = SettingsConfigDict(env_nested_delimiter="__")
