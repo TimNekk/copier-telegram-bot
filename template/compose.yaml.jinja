@@ -10,14 +10,32 @@ services:
     restart: unless-stopped
     volumes:
       - logs_data:${FILE_LOG__DIRECTORY}
-{%- if 'redis' in features %}
+{%- if database == 'postgres' or 'redis' in features %}
     depends_on:
+{%- if database == 'postgres' %}
+      - postgres
 {%- endif %}
 {%- if 'redis' in features %}
       - redis
 {%- endif %}
+{%- endif %}
     networks:
       - app
+{% if database == 'postgres' %}
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_DB=${POSTGRES__NAME}
+      - POSTGRES_USER=${POSTGRES__USER}
+      - POSTGRES_PASSWORD=${POSTGRES__PASSWORD}
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES__EXPOSE_PORT:-5432}:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app
+{%- endif %}
 {% if 'redis' in features %}
   redis:
     image: redis:7-alpine
@@ -35,6 +53,9 @@ networks:
 
 volumes:
   logs_data:
+{%- if database == 'postgres' %}
+  postgres_data:
+{%- endif %}
 {%- if 'redis' in features %}
   redis_data:
 {%- endif %}

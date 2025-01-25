@@ -12,6 +12,9 @@ from redis.asyncio import ConnectionPool, Redis
 {%- endif %}
 
 from bot.core.settings import {% if settings_manager == 'pydantic-settings' %}Settings{% elif settings_manager == 'dynaconf' %}settings{% endif %}
+{%- if database == 'postgres' %}
+from bot.database.database import get_sessionmaker
+{%- endif %}
 {% if settings_manager == 'pydantic-settings' %}
 settings = Settings()
 {% endif %}
@@ -42,6 +45,9 @@ storage = RedisStorage(
 dp = Dispatcher(
     storage=storage,
 )
-{% else %}
+{%- else %}
 dp = Dispatcher()
+{%- endif %}
+{% if database == 'postgres' %}
+sessionmaker = get_sessionmaker(url={% if settings_manager == 'pydantic-settings' %}settings.postgres.url.get_secret_value(){% elif settings_manager == 'dynaconf' %}f"postgresql+psycopg://{settings.postgres.user}:{settings.postgres.password}@{settings.postgres.host}:{settings.postgres.port}/{settings.postgres.name}"{% endif %})
 {% endif %}

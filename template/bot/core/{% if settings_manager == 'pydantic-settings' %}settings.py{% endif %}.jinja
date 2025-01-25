@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydantic import DirectoryPath, Field, NonNegativeFloat, {% if 'redis' in features %}PositiveInt, {% endif %}SecretStr
+from pydantic import DirectoryPath, NonNegativeFloat, {% if 'redis' in features or database == 'postgres' %}PositiveInt, {% endif %}SecretStr{% if database == 'postgres' %}, computed_field{% endif %}
 from pydantic_settings import BaseSettings as PydanticBaseSettings
 from pydantic_settings import SettingsConfigDict
 
@@ -12,23 +12,36 @@ class BaseSettings(PydanticBaseSettings):
 class BotSettings(BaseSettings):
     token: SecretStr
 {%- if 'throttling' in middlewares %}
-    rate_limit: NonNegativeFloat = Field(default=0.5)
-{%- endif %}
-
-
+    rate_limit: NonNegativeFloat
+{%- endif %}{{ '\n\n' }}
 class FileLogSettings(BaseSettings):
     name: str
     directory: DirectoryPath
     level: str
+{{ '\n\n' }}{% if database == 'postgres' -%}
+class PostgresSettings(BaseSettings):
+    host: str
+    port: PositiveInt
+    name: str
+    user: str
+    password: SecretStr
 
-{% if 'redis' in features %}
+    @computed_field
+    @property
+    def url(self) -> SecretStr:
+        return SecretStr(
+            f"postgresql+psycopg://{self.user}:{self.password.get_secret_value()}@{self.host}:{self.port}/{self.name}",
+        )
+{{ '\n\n' }}{% endif %}{% if 'redis' in features -%}
 class RedisSettings(BaseSettings):
     port: PositiveInt
-{% endif %}
-
+{{ '\n\n' }}{% endif -%}
 class Settings(BaseSettings):
     bot: BotSettings
     file_log: FileLogSettings
+{%- if database == 'postgres' %}
+    postgres: PostgresSettings
+{%- endif %}
 {%- if 'redis' in features %}
     redis: RedisSettings
 {%- endif %}
