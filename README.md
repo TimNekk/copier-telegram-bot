@@ -49,6 +49,7 @@
 - [x] Redis
 - [x] Postgres
 - [x] Alembic
+- [x] .template.env
 - [ ] Aiogram Dialogs
 - [ ] Aioscheduler
 - [ ] Bot Internalization
@@ -56,7 +57,6 @@
 - [ ] Cache Decorator
 - [ ] Dependabot
 - [ ] Testing
-- [ ] .template.env
 - [ ] Flake8 / wemake
 - [ ] Create develop branch
 

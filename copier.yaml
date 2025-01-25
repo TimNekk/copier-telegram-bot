@@ -12,6 +12,7 @@ _jinja_extensions:
 _tasks:
     - command: ["{{ _copier_python }}", "tasks/git_init.py"]
       when: "{{ git_init }}"
+    - command: ["{{ _copier_python }}", "tasks/create_templates.py"]
     - command:
           [
               "{{ _copier_python }}",
