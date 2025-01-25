@@ -48,12 +48,12 @@
 - [x] Dockerfile
 - [x] Redis
 - [x] Postgres
+- [x] Alembic
 - [ ] Aiogram Dialogs
 - [ ] Aioscheduler
 - [ ] Bot Internalization
 - [ ] Prompts Internalization
 - [ ] Cache Decorator
-- [ ] Database Migrations
 - [ ] Dependabot
 - [ ] Testing
 - [ ] .template.env

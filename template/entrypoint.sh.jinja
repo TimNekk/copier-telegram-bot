@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+if [ "$(id -u)" = "0" ]; then
+    chown -R appuser:appgroup /app/logs{% if 'alembic' in features %} /app/migrations/versions{% endif %}
+    exec gosu appuser:appgroup "$@"
+else
+    if [ ! -w "/app/logs" ]{% if 'alembic' in features %} || [ ! -w "/app/migrations/versions" ]{% endif %}; then
+        echo "ERROR: Logs{% if 'alembic' in features %} or migrations{% endif %} directory not writable" >&2
+        exit 1
+    fi
+    exec "$@"
+fi

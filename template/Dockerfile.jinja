@@ -46,12 +46,20 @@ RUN apt-get update && \
     mkdir -p logs && \
     chown appuser:appgroup logs && \
     chmod 755 logs && \
+{%- if 'alembic' in features %}
+    mkdir -p logs /app/migrations/versions && \
+    chown -R appuser:appgroup /app/migrations/versions && \
+    chmod 755 /app/migrations/versions && \
+{%- endif%}
     rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//' /entrypoint.sh && \
     chmod +x /entrypoint.sh
-
+{% if 'alembic' in features %}
+COPY migrations /app/migrations
+COPY alembic.ini /app/alembic.ini
+{%- endif %}
 COPY --from=builder /app/.venv /app/.venv
 COPY --from=builder /app/bot /app/bot
 

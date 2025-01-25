@@ -34,3 +34,19 @@ restart: down up
 # Show logs
 logs tail="200": check-docker
     {{ "{{dc}}" }} logs -f --tail={{ "{{tail}}" }}
+{% if 'alembic' in features %}
+# Upgrade to a specific migration or latest (head)
+upgrade target="head": check-docker
+    {{ "{{dc}}" }} build bot
+    {{ "{{dc}}" }} run --rm migrator alembic upgrade {{ "{{target}}" }}
+
+# Generate migration
+revision name: check-docker
+    {{ "{{dc}}" }} build bot
+    {{ "{{dc}}" }} run --rm migrator alembic revision --autogenerate -m "{{ "{{name}}" }}"
+
+# Downgrade by a specified number of revisions (default is 1)
+downgrade target="-1": check-docker
+    {{ "{{dc}}" }} build bot
+    {{ "{{dc}}" }} run --rm migrator alembic downgrade {{ "{{target}}" }}
+{%- endif %}

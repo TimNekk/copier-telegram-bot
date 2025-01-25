@@ -46,6 +46,22 @@ services:
     restart: unless-stopped
     networks:
       - app
+{%- endif %}
+{% if 'alembic' in features %}
+  migrator:
+    image: ${COMPOSE_PROJECT_NAME}-bot:latest
+    container_name: ${COMPOSE_PROJECT_NAME}-migrator
+    env_file:
+      - path: ./.env
+        required: false
+    command: alembic upgrade head
+    volumes:
+      - logs_data:${FILE_LOG__DIRECTORY}
+      - ./migrations/versions:/app/migrations/versions
+    depends_on:
+      - postgres
+    networks:
+      - app
 {% endif %}
 networks:
   app:
