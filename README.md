@@ -47,7 +47,7 @@
 - [x] Docker Compose
 - [x] Dockerfile
 - [x] Redis
-- [ ] Postgres
+- [x] Postgres
 - [ ] Aiogram Dialogs
 - [ ] Aioscheduler
 - [ ] Bot Internalization
