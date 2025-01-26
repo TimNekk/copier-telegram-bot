@@ -138,6 +138,9 @@ middlewares:
             value: "logging"
         "Throttling      | Rate limit handling to prevent spam and abuse":
             value: "throttling"
+        "Database        | Database session management with transactional safety":
+            value: "database"
+            validator: "{% if not database %}No database selected{% endif %}"
         "Callback Answer | Automatically answer callback queries":
             value: "callback_answer"
     validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency Middleware is required to use Throttling Middleware{% endif %}"

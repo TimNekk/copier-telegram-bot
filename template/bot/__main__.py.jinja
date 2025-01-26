@@ -7,7 +7,7 @@ from aiogram_dialog import setup_dialogs
 {%- endif %}
 from loguru import logger
 
-from bot.core.loader import bot, dp, settings
+from bot.core.loader import bot, dp, {% if 'database' in middlewares %}sessionmaker, {% endif %}settings
 {%- if 'aiogram-dialog' in features %}
 from bot.dialogs import get_dialogs_router
 {%- endif %}
@@ -30,6 +30,9 @@ async def on_startup() -> None:
         dependencies={
             "settings": settings,
         },
+{%- endif %}
+{%- if 'database' in middlewares %}
+        sessionmaker=sessionmaker,
 {%- endif %}
     )
 {% endif %}

@@ -51,7 +51,7 @@
 - [x] Alembic
 - [x] .template.env
 - [x] Aiogram Dialog
-- [ ] Database Middleware
+- [x] Database Middleware
 - [ ] Aioscheduler
 - [ ] Bot Internalization
 - [ ] Prompts Internalization

@@ -6,6 +6,9 @@ from aiogram.utils.callback_answer import CallbackAnswerMiddleware
 {% endif %}
 if TYPE_CHECKING:
     from aiogram import Dispatcher
+{%- if 'database' in middlewares %}
+    from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+{%- endif %}
 
 
 def register_middlewares(
@@ -13,8 +16,13 @@ def register_middlewares(
 {%- if 'dependency' in middlewares %}
     dependencies: dict[str, Any],
 {%- endif %}
+{%- if 'database' in middlewares %}
+    sessionmaker: async_sessionmaker[AsyncSession],
+{%- endif %}
 ) -> None:
-{%- if 'dependency' in middlewares %}
+{%- if 'database' in middlewares %}
+    from .database import DatabaseMiddleware
+{%- endif %}{%- if 'dependency' in middlewares %}
     from .dependency import DependencyMiddleware
 {%- endif %}{%- if 'logging' in middlewares %}
     from .logger import LoggingMiddleware
@@ -27,6 +35,8 @@ def register_middlewares(
     dp.update.outer_middleware(LoggingMiddleware())
 {% endif %}{% if 'dependency' in middlewares %}
     dp.update.outer_middleware(DependencyMiddleware(dependencies))
+{% endif %}{% if 'database' in middlewares %}
+    dp.update.outer_middleware(DatabaseMiddleware(sessionmaker))
 {% endif %}{% if 'callback_answer' in middlewares %}
     dp.callback_query.middleware(CallbackAnswerMiddleware())
 {% endif %}
