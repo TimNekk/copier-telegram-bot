@@ -2,10 +2,15 @@ from __future__ import annotations
 
 import asyncio
 import sys
-
+{% if 'aiogram-dialog' in features %}
+from aiogram_dialog import setup_dialogs
+{%- endif %}
 from loguru import logger
 
 from bot.core.loader import bot, dp, settings
+{%- if 'aiogram-dialog' in features %}
+from bot.dialogs import get_dialogs_router
+{%- endif %}
 from bot.handlers import get_handlers_router
 from bot.keyboards.default_commands import (
     remove_default_commands,
@@ -29,7 +34,10 @@ async def on_startup() -> None:
     )
 {% endif %}
     dp.include_router(get_handlers_router())
-
+{% if 'aiogram-dialog' in features %}
+    dp.include_router(get_dialogs_router())
+    setup_dialogs(dp)
+{% endif %}
     await set_default_commands(bot)
 
     bot_info = await bot.get_me()

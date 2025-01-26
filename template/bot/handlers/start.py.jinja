@@ -1,0 +1,32 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from aiogram import Router
+from aiogram.filters import CommandStart
+{% if 'aiogram-dialog' in features %}
+from bot.states import ExampleSG
+{% endif %}
+if TYPE_CHECKING:
+    from aiogram import types
+{%- if 'aiogram-dialog' in features %}
+    from aiogram_dialog import DialogManager
+{%- endif %}
+
+router = Router()
+
+
+@router.message(CommandStart())
+async def handle_start_command(
+    message: types.Message,
+{%- if 'aiogram-dialog' in features %}
+    dialog_manager: DialogManager,
+{%- endif %}
+) -> None:
+    await message.answer("👋")
+{%- if 'aiogram-dialog' in features %}
+
+    await dialog_manager.start(
+        ExampleSG.example,
+    )
+{%- endif %}

@@ -116,13 +116,16 @@ features:
     help: What features do you want to use?
     multiselect: true
     choices:
-        "redis   | Persistent key-value storage for maintaining bot state across restarts":
+        "Redis          | Persistent key-value storage for maintaining bot state across restarts":
             value: "redis"
-        "just    | Handy way to save and run project-specific commands":
+        "just           | Handy way to save and run project-specific commands":
             value: "just"
-        "alembic | Database migration tool for SQLAlchemy to manage schema changes":
+        "Alembic        | Database migration tool for SQLAlchemy to manage schema changes":
             value: "alembic"
             validator: "{% if not database %}No database selected{% endif %}"
+        "Aiogram Dialog | Framework for developing interactive messages and menus":
+            value: "aiogram-dialog"
+    validator: "{% if 'aiogram-dialog' in features and 'redis' not in features %}Redis is required to use Aiogram Dialog{% endif %}"
 
 middlewares:
     type: str

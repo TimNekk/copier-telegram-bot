@@ -50,7 +50,8 @@
 - [x] Postgres
 - [x] Alembic
 - [x] .template.env
-- [ ] Aiogram Dialogs
+- [x] Aiogram Dialog
+- [ ] Database Middleware
 - [ ] Aioscheduler
 - [ ] Bot Internalization
 - [ ] Prompts Internalization
@@ -59,6 +60,7 @@
 - [ ] Testing
 - [ ] Flake8 / wemake
 - [ ] Create develop branch
+- [ ] Alpine Images
 
 ## ⭐ Star History
 
