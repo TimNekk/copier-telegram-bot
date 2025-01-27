@@ -30,7 +30,40 @@
     </div>
 </div>
 
-<!-- ## ✨ Features -->
+## ✨ Features
+
+Built with [Copier](https://copier.readthedocs.io/), this template lets you toggle features during setup - choose what you need and generate files instantly! Ready for [Docker](https://www.docker.com/) 🐳 and [Coolify](https://coolify.io/) ☁️ deployment.  
+
+#### Core Infrastructure 
+- [x] [**`Docker Compose`**](https://docs.docker.com/compose/) 🐳 Launch bot + services with one command  
+- [x] [**`Python 3.9–3.13`**](https://www.python.org/) 🐍 Choose your Python version easily  
+- [x] [**`uv`**](https://docs.astral.sh/uv/) 🚀 Fast dependency management powered by Rust  
+- [x] [**`Poetry`**](https://python-poetry.org/) 📦 Manage dependencies safely with virtual environments  
+- [x] [**`pip`**](https://pip.pypa.io/) 📜 Classic Python package installer  
+
+#### Telegram Bot Framework
+- [x] [**`Aiogram`**](https://docs.aiogram.dev/) ⚡ Modern async bot framework with state management  
+- [x] [**`Aiogram Dialog`**](https://github.com/Tishka17/aiogram_dialog) 🖼️ Create menus and interactive interfaces  
+- [x] [**`Redis`**](https://redis.io/) ❤️ Keep bot data safe between restarts  
+
+#### Database & ORM
+- [x] [**`PostgreSQL`**](https://www.postgresql.org/) 🐘 Powerful database for complex projects  
+- [x] [**`SQLAlchemy`**](https://www.sqlalchemy.org/) 🛠️ Work with databases using Python code  
+- [x] [**`Alembic`**](https://alembic.sqlalchemy.org/) ⏳ Track and apply database changes easily  
+
+#### Middlewares
+- [x] [**`Dependency Injection`**](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html) 💉 Share tools/data across bot handlers  
+- [x] [**`Throttling`**](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html) 🛑 Stop spam with automatic speed limits  
+- [x] [**`Database Sessions`**](https://docs.sqlalchemy.org/en/20/orm/session_basics.html) ♻️ Auto-manage database connections  
+- [x] [**`Loguru`**](https://github.com/Delgan/loguru) 📜 Simple logging with colors and fun  
+
+#### Tooling
+- [x] [**`Pydantic Settings`**](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) ✅ Safe config management with type checking  
+- [x] [**`Dynaconf`**](https://www.dynaconf.com/) ⚙️ Configs for dev/test/prod environments  
+- [x] [**`Ruff`**](https://docs.astral.sh/ruff/) 🪶 Super-fast code linting and cleanup  
+- [x] [**`Justfile`**](https://just.systems/) 🪄 Short commands for complex tasks  
+- [x] [**`Cache Decorator`**](https://pypi.org/project/orjson/) ⚡ Speed up functions with Redis caching  
+
 ## 🚧 Work in progress
 
 - [x] Justfile
