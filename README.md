@@ -52,10 +52,10 @@
 - [x] .template.env
 - [x] Aiogram Dialog
 - [x] Database Middleware
+- [x] Cache Decorator
 - [ ] Aioscheduler
 - [ ] Bot Internalization
 - [ ] Prompts Internalization
-- [ ] Cache Decorator
 - [ ] Dependabot
 - [ ] Testing
 - [ ] Flake8 / wemake

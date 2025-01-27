@@ -125,7 +125,9 @@ features:
             validator: "{% if not database %}No database selected{% endif %}"
         "Aiogram Dialog | Framework for developing interactive messages and menus":
             value: "aiogram-dialog"
-    validator: "{% if 'aiogram-dialog' in features and 'redis' not in features %}Redis is required to use Aiogram Dialog{% endif %}"
+        "Cache Decorator | Cache results of frequent functions using Redis":
+            value: "cache-decorator"
+    validator: "{% if 'aiogram-dialog' in features and 'redis' not in features %}Redis is required to use Aiogram Dialog{% endif %}{% if 'cache-decorator' in features and 'redis' not in features %}Redis is required to use Cache Decorator{% endif %}"
 
 middlewares:
     type: str
