@@ -22,6 +22,7 @@ _tasks:
               "{{ features|join(' ') }}",
               "{% if database == 'postgres' %}psycopg[binary]{% endif %}",
               "{% if database == 'postgres' %}sqlalchemy{% endif %}",
+              "{% if 'cache-decorator' in features %}orjson{% endif %}",
           ]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"

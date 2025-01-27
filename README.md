@@ -53,14 +53,11 @@
 - [x] Aiogram Dialog
 - [x] Database Middleware
 - [x] Cache Decorator
-- [ ] Aioscheduler
 - [ ] Bot Internalization
 - [ ] Prompts Internalization
 - [ ] Dependabot
 - [ ] Testing
 - [ ] Flake8 / wemake
-- [ ] Create develop branch
-- [ ] Alpine Images
 
 ## ⭐ Star History
 
