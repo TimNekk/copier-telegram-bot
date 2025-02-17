@@ -1,4 +1,4 @@
-aiogram==3.17.0
+aiogram==3.18.0
 aiogram-dialog==2.3.1
 alembic==1.14.1
 dynaconf==3.2.7
