@@ -1,12 +1,12 @@
-aiogram==3.17.0
+aiogram==3.18.0
 aiogram-dialog==2.3.1
-alembic==1.14.1
-dynaconf==3.2.7
+alembic==1.15.1
+dynaconf==3.2.10
 loguru==0.7.3
 orjson==3.10.15
-psycopg[binary]==3.2.4
-pydantic-settings==2.7.1
+psycopg[binary]==3.2.6
+pydantic-settings==2.8.1
 redis==5.2.1
-sqlalchemy==2.0.37
+sqlalchemy==2.0.39
 uvloop==0.21.0 ; sys_platform != "win32"
 winloop==0.1.8 ; sys_platform == "win32"
