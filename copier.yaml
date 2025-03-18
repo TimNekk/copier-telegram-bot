@@ -73,13 +73,13 @@ package_manager:
     type: str
     help: Which package manager do you want to use?
     choices:
-        "uv     | Blazing-fast Python package installer and resolver":
+        "uv                | Blazing-fast Python package installer and resolver":
             value: uv
             validator: "{% if not 'uv'|is_installed %}not installed{% endif %}"
-        "Poetry | Python dependency management and packaging made easy":
+        "Poetry            | Python dependency management and packaging made easy":
             value: poetry
             validator: "{% if not 'poetry'|is_installed %}not installed{% endif %}"
-        "pip    | Standard package installer for Python packages":
+        "pip               | Standard package installer for Python packages":
             value: pip
             validator: "{% if not 'pip'|is_installed %}not installed{% endif %}"
 
@@ -107,9 +107,9 @@ database:
     type: str
     help: Which database do you want to use?
     choices:
-        "Postgres | Powerful open-source relational database with ACID compliance and advanced features":
+        "Postgres          | Powerful open-source relational database with ACID compliance and advanced features":
             value: "postgres"
-        "None     | Do not configure a database for this project":
+        "None              | Do not configure a database for this project":
             value: ""
 
 features:
@@ -117,16 +117,16 @@ features:
     help: What features do you want to use?
     multiselect: true
     choices:
-        "Redis          | Persistent key-value storage for maintaining bot state across restarts":
+        "Redis             | Persistent key-value storage for maintaining bot state across restarts":
             value: "redis"
-        "just           | Handy way to save and run project-specific commands":
+        "just              | Handy way to save and run project-specific commands":
             value: "just"
-        "Alembic        | Database migration tool for SQLAlchemy to manage schema changes":
+        "Alembic           | Database migration tool for SQLAlchemy to manage schema changes":
             value: "alembic"
             validator: "{% if not database %}No database selected{% endif %}"
-        "Aiogram Dialog | Framework for developing interactive messages and menus":
+        "Aiogram Dialog    | Framework for developing interactive messages and menus":
             value: "aiogram-dialog"
-        "Cache Decorator | Cache results of frequent functions using Redis":
+        "Cache Decorator   | Cache results of frequent functions using Redis":
             value: "cache-decorator"
     validator: "{% if 'aiogram-dialog' in features and 'redis' not in features %}Redis is required to use Aiogram Dialog{% endif %}{% if 'cache-decorator' in features and 'redis' not in features %}Redis is required to use Cache Decorator{% endif %}"
 
@@ -135,16 +135,16 @@ middlewares:
     help: Which middlewares do you want to use?
     multiselect: true
     choices:
-        "Dependency      | Inject required dependencies into handler's data":
+        "Dependency        | Inject required dependencies into handler's data":
             value: "dependency"
-        "Logging         | Detailed logging of all telegram bot events and updates":
+        "Logging           | Detailed logging of all telegram bot events and updates":
             value: "logging"
-        "Throttling      | Rate limit handling to prevent spam and abuse":
+        "Throttling        | Rate limit handling to prevent spam and abuse":
             value: "throttling"
-        "Database        | Database session management with transactional safety":
+        "Database          | Database session management with transactional safety":
             value: "database"
             validator: "{% if not database %}No database selected{% endif %}"
-        "Callback Answer | Automatically answer callback queries":
+        "Callback Answer   | Automatically answer callback queries":
             value: "callback_answer"
     validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency Middleware is required to use Throttling Middleware{% endif %}"
 
@@ -152,9 +152,9 @@ linter:
     type: str
     help: Which linter do you want to use?
     choices:
-        "ruff | Blazing-fast Rust-based linter replacing Flake8, isort, and autoformatters":
+        "ruff              | Blazing-fast Rust-based linter replacing Flake8, isort, and autoformatters":
             value: "ruff"
-        "None | Skip linter configuration for this project":
+        "None              | Skip linter configuration for this project":
             value: ""
 
 settings_manager:
