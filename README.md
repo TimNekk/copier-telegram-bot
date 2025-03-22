@@ -30,11 +30,20 @@
     </div>
 </div>
 
+## 🚀 Quickstart
+
+Ensure [uv](https://docs.astral.sh/uv/getting-started/installation/) is installed, then create a new Telegram bot project with:
+
+```bash
+uvx --with copier-templates-extensions copier copy --trust gh:TimNekk/copier-telegram-bot ~/path/to/your/project
+```
+
 ## ✨ Features
 
 Built with [Copier](https://copier.readthedocs.io/), this template lets you toggle features during setup - choose what you need and generate files instantly! Ready for [Docker](https://www.docker.com/) 🐳 and [Coolify](https://coolify.io/) ☁️ deployment.
 
 #### Core Infrastructure
+
 - [x] [**`Docker Compose`**](https://docs.docker.com/compose/) 🐳 Launch bot + services with one command
 - [x] [**`Python 3.9–3.13`**](https://www.python.org/) 🐍 Choose your Python version easily
 - [x] [**`uv`**](https://docs.astral.sh/uv/) 🚀 Fast dependency management powered by Rust
@@ -42,29 +51,51 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 - [x] [**`pip`**](https://pip.pypa.io/) 📜 Classic Python package installer
 
 #### Telegram Bot Framework
+
 - [x] [**`Aiogram`**](https://docs.aiogram.dev/) ⚡ Modern async bot framework with state management
 - [x] [**`Aiogram Dialog`**](https://github.com/Tishka17/aiogram_dialog) 🖼️ Create menus and interactive interfaces
 - [x] [**`Redis`**](https://redis.io/) ❤️ Keep bot data safe between restarts
 
 #### Database & ORM
+
 - [x] [**`PostgreSQL`**](https://www.postgresql.org/) 🐘 Powerful database for complex projects
 - [x] [**`SQLAlchemy`**](https://www.sqlalchemy.org/) 🛠️ Work with databases using Python code
 - [x] [**`Alembic`**](https://alembic.sqlalchemy.org/) ⏳ Track and apply database changes easily
 
 #### Middlewares
+
 - [x] [**`Dependency Injection`**](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html) 💉 Share tools/data across bot handlers
 - [x] [**`Throttling`**](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html) 🛑 Stop spam with automatic speed limits
 - [x] [**`Database Sessions`**](https://docs.sqlalchemy.org/en/20/orm/session_basics.html) ♻️ Auto-manage database connections
 - [x] [**`Loguru`**](https://github.com/Delgan/loguru) 📜 Simple logging with colors and fun
 
 #### Tooling
+
 - [x] [**`Pydantic Settings`**](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) ✅ Safe config management with type checking
 - [x] [**`Dynaconf`**](https://www.dynaconf.com/) ⚙️ Configs for dev/test/prod environments
 - [x] [**`Ruff`**](https://docs.astral.sh/ruff/) 🪶 Super-fast code linting and cleanup
 - [x] [**`Justfile`**](https://just.systems/) 🪄 Short commands for complex tasks
 - [x] [**`Cache Decorator`**](https://pypi.org/project/orjson/) ⚡ Speed up functions with Redis caching
 
-## Roadmap 🗺️
+## 🔧 Prerequisites
+
+Before using the **Copier Telegram Bot** template, ensure you have the following installed:
+
+- **Copier**: Refer to the [installation guide](https://copier.readthedocs.io/en/latest/#installation).
+- **Copier Templates Extensions**: Refer to the [repository](https://github.com/copier-org/copier-templates-extensions?tab=readme-ov-file#installation) for installation instructions.
+
+## 📖 Usage
+
+Once these prerequisites are installed, you're ready to use the template!
+
+```bash
+copier copy --trust gh:TimNekk/copier-telegram-bot ~/path/to/your/project
+```
+
+Copier will ask you a lot of questions. Answer them to properly generate the template.
+
+## 🗺️ Roadmap
+
 Help shape the future! Planned improvements:
 
 - [ ] [**`Bot Internationalization`**](https://docs.aiogram.dev/en/latest/dispatcher/i18n.html) 🌐 Support multiple languages for global audiences
