@@ -1,0 +1,65 @@
+services:
+  bot:
+    image: ${COMPOSE_PROJECT_NAME}-bot:latest
+    build:
+      context: .
+    container_name: ${COMPOSE_PROJECT_NAME}-bot
+    env_file:
+      - path: ./.env
+        required: false
+    restart: unless-stopped
+    volumes:
+      - logs_data:${FILE_LOG__DIRECTORY}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - app
+
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_DB=${POSTGRES__NAME}
+      - POSTGRES_USER=${POSTGRES__USER}
+      - POSTGRES_PASSWORD=${POSTGRES__PASSWORD}
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES__EXPOSE_PORT:-5432}:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app
+
+  redis:
+    image: redis:7-alpine
+    container_name: ${COMPOSE_PROJECT_NAME}-redis
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --port ${REDIS__PORT}
+    restart: unless-stopped
+    networks:
+      - app
+
+  migrator:
+    image: ${COMPOSE_PROJECT_NAME}-bot:latest
+    container_name: ${COMPOSE_PROJECT_NAME}-migrator
+    env_file:
+      - path: ./.env
+        required: false
+    command: alembic upgrade head
+    volumes:
+      - logs_data:${FILE_LOG__DIRECTORY}
+      - ./migrations/versions:/app/migrations/versions
+    depends_on:
+      - postgres
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  logs_data:
+  postgres_data:
+  redis_data:

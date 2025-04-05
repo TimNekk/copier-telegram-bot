@@ -1,0 +1,46 @@
+[project]
+name = "exmaple-bot"
+version = "0.1.0"
+description = "Telegram bot that is just an exmaple"
+authors = [{ name = "Timofey Kochetov", email = "herew26@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiogram-dialog==2.3.1",
+    "aiogram==3.19.0",
+    "alembic==1.15.2",
+    "loguru==0.7.3",
+    "orjson==3.10.16",
+    "psycopg[binary]==3.2.6",
+    "pydantic-settings==2.8.1",
+    "redis==5.2.1",
+    "sqlalchemy==2.0.40",
+    "uvloop==0.21.0 ; sys_platform != 'win32'",
+    "winloop==0.1.8 ; sys_platform == 'win32'",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.pylint]
+max-args = 5
+
+[tool.uv]
+dev-dependencies = [
+    "ruff==0.11.4",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ANN401", # flake8-annotations: Dynamically typed expressions (typing.Any) are disallowed
+    "ARG001", # flake8-unused-arguments: Unused function argument
+    "COM812", # flake8-commas: 	Trailing comma missing
+    "D1",     # pydocstyle: Missing docstring in ...
+    "D203",   # pydocstyle: 1 blank line required before class docstring (D211 is used instead)
+    "D213",   # pydocstyle: Multi-line docstring summary should start at the second line (D212 is used instead)
+    "FIX",    # flake8-fixme: Line contains ..., consider resolving the issue
+    "RUF001", # Ruff-specific: Checks for ambiguous Unicode characters in strings
+    "TD002",  # flake8-todos: Missing author in TODO
+    "TD003",  # flake8-todos: Missing issue link for this TODO
+]
