@@ -35,7 +35,7 @@
 Ensure [uv](https://docs.astral.sh/uv/getting-started/installation/) is installed, then create a new Telegram bot project with:
 
 ```bash
-uvx --with copier-templates-extensions copier copy --trust gh:TimNekk/copier-telegram-bot ~/path/to/your/project
+uvx --with copier-templates-extensions copier copy --trust -r HEAD gh:TimNekk/copier-telegram-bot ~/path/to/your/project
 ```
 
 ## ✨ Features
@@ -89,7 +89,7 @@ Before using the **Copier Telegram Bot** template, ensure you have the following
 Once these prerequisites are installed, you're ready to use the template!
 
 ```bash
-copier copy --trust gh:TimNekk/copier-telegram-bot ~/path/to/your/project
+copier copy --trust -r HEAD gh:TimNekk/copier-telegram-bot ~/path/to/your/project
 ```
 
 Copier will ask you a lot of questions. Answer them to properly generate the template.
