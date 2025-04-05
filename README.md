@@ -83,7 +83,7 @@ The **fully-featured** generated project can be found in the [example/](./exampl
 
 Below is the folder structure of the generated project:
 
-```python
+```sh
 .
 ├── bot                          # Main directory for the bot's source code
 │   ├── cache                    # Contains caching-related modules
