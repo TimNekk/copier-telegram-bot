@@ -29,8 +29,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 {%- endif %}
 
-COPY bot/ ./bot
-
 FROM python:{{ python_version }}-slim-bookworm AS runtime
 
 WORKDIR /app
@@ -61,7 +59,7 @@ COPY migrations /app/migrations
 COPY alembic.ini /app/alembic.ini
 {%- endif %}
 COPY --from=builder /app/.venv /app/.venv
-COPY --from=builder /app/bot /app/bot
+COPY bot/ ./bot
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["python", "-m", "bot"]
