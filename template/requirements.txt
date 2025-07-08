@@ -1,6 +1,6 @@
 aiogram==3.20.0.post0
 aiogram-dialog==2.3.1
-alembic==1.16.2
+alembic==1.16.3
 dynaconf==3.2.11
 loguru==0.7.3
 orjson==3.10.18
