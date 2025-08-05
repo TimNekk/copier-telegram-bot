@@ -6,7 +6,7 @@ loguru==0.7.3
 orjson==3.11.1
 psycopg[binary]==3.2.9
 pydantic-settings==2.10.1
-redis==6.2.0
+redis==6.3.0
 sqlalchemy==2.0.42
 uvloop==0.21.0 ; sys_platform != "win32"
 winloop==0.2.1 ; sys_platform == "win32"
