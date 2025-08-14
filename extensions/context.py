@@ -6,8 +6,10 @@ class ContextUpdater(ContextHook):
         # strip() all values
         context = {k: v.strip() if isinstance(v, str) else v for k, v in context.items()}
         
-        # title() on author name
-        context["project_author_name"] = context["project_author_name"].title()
+        # title() on author name if present
+        author_name = context.get("project_author_name")
+        if isinstance(author_name, str) and author_name != "":
+            context["project_author_name"] = author_name.title()
         
         # project_author
         if context.get("project_author_name") and context.get("project_author_email"):
