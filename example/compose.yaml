@@ -3,7 +3,6 @@ services:
     image: ${COMPOSE_PROJECT_NAME}-bot:latest
     build:
       context: .
-    container_name: ${COMPOSE_PROJECT_NAME}-bot
     env_file:
       - path: ./.env
         required: false
@@ -32,7 +31,6 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: ${COMPOSE_PROJECT_NAME}-redis
     volumes:
       - redis_data:/data
     command: redis-server --appendonly yes --port ${REDIS__PORT}
@@ -42,7 +40,6 @@ services:
 
   migrator:
     image: ${COMPOSE_PROJECT_NAME}-bot:latest
-    container_name: ${COMPOSE_PROJECT_NAME}-migrator
     env_file:
       - path: ./.env
         required: false

@@ -25,11 +25,9 @@ async def on_startup() -> None:
             "settings": settings,
         },
         sessionmaker=sessionmaker,
+        default_locale=settings.bot.default_locale,
     )
 
-    dp.include_router(get_handlers_router())
-
-    dp.include_router(get_dialogs_router())
     setup_dialogs(dp)
 
     await set_default_commands(bot)
@@ -65,13 +63,13 @@ async def main() -> None:
         compression="zip",
     )
 
+    dp.include_router(get_handlers_router())
+    dp.include_router(get_dialogs_router())
+
     dp.startup.register(on_startup)
     dp.shutdown.register(on_shutdown)
 
-    await dp.start_polling(
-        bot,
-        allowed_updates=dp.resolve_used_update_types(),
-    )
+    await dp.start_polling(bot)
 
 
 if __name__ == "__main__":

@@ -26,6 +26,7 @@ async def set_redis_value(
     key: bytes | str,
     value: bytes | str,
     ttl: int | timedelta | None = DEFAULT_TTL,
+    *,
     is_transaction: bool = False,
 ) -> None:
     """Set a value in Redis with an optional time-to-live (TTL)."""
