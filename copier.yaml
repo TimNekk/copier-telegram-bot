@@ -23,6 +23,7 @@ _tasks:
               "{% if database == 'postgres' %}psycopg[binary]{% endif %}",
               "{% if database == 'postgres' %}sqlalchemy{% endif %}",
               "{% if 'cache-decorator' in features %}orjson{% endif %}",
+              "{% if 'i18n' in features %}aiogram-i18n[compiler]{% endif %}",
           ]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"
@@ -128,6 +129,8 @@ features:
             value: "aiogram-dialog"
         "Cache Decorator   | Cache results of frequent functions using Redis":
             value: "cache-decorator"
+        "i18n              | Support multiple languages":
+            value: "i18n"
     validator: "{% if 'aiogram-dialog' in features and 'redis' not in features %}Redis is required to use Aiogram Dialog{% endif %}{% if 'cache-decorator' in features and 'redis' not in features %}Redis is required to use Cache Decorator{% endif %}"
 
 middlewares:
