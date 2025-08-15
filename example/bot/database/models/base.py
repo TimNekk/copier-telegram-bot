@@ -2,7 +2,7 @@ import datetime
 from decimal import Decimal
 from typing import Annotated
 
-from sqlalchemy import BigInteger, Numeric, String, text
+from sqlalchemy import BigInteger, DateTime, Numeric, String, text
 from sqlalchemy.ext.asyncio import AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -28,5 +28,7 @@ class Base(AsyncAttrs, DeclarativeBase):
 
 class TimestampMixin:
     created_at: Mapped[datetime.datetime] = mapped_column(
-        server_default=text("TIMEZONE('utc', now())"),
+        DateTime(timezone=True),
+        server_default=text("now()"),
+        nullable=False,
     )

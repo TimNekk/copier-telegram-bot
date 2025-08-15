@@ -11,6 +11,7 @@ class BaseSettings(PydanticBaseSettings):
 
 class BotSettings(BaseSettings):
     token: SecretStr
+    default_locale: str
     rate_limit: NonNegativeFloat
 
 
