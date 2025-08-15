@@ -33,6 +33,11 @@ exclude = [
 [tool.ruff.lint.pylint]
 max-args = 5
 
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    "PLC0415", # pylint: Import statements outside of a module's top-level scope
+]
+
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
