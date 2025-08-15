@@ -30,4 +30,11 @@ class ContextUpdater(ContextHook):
         else:
             context["project_author"] = ""
         
+        # add i18n as middleware if it's in features
+        if "i18n" in context.get("features", []):
+            if context.get("middlewares") is None:
+                context["middlewares"] = []
+            if "i18n" not in context["middlewares"]:
+                context["middlewares"].append("i18n")
+        
         return context
