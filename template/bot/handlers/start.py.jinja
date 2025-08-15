@@ -1,16 +1,24 @@
+{%- set ad = 'aiogram-dialog' in features -%}
+{%- set i1 = 'i18n' in features -%}
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 from aiogram import Router
 from aiogram.filters import CommandStart
-{% if 'aiogram-dialog' in features %}
+{%- if ad %}
+from aiogram_dialog import StartMode
+{%- endif %}
+{% if ad %}
 from bot.states import ExampleSG
 {% endif %}
 if TYPE_CHECKING:
     from aiogram import types
-{%- if 'aiogram-dialog' in features %}
+{%- if ad %}
     from aiogram_dialog import DialogManager
+{%- endif %}
+{%- if i1 %}
+    from aiogram_i18n import I18nContext
 {%- endif %}
 
 router = Router()
@@ -19,14 +27,23 @@ router = Router()
 @router.message(CommandStart())
 async def handle_start_command(
     message: types.Message,
-{%- if 'aiogram-dialog' in features %}
+{%- if ad %}
     dialog_manager: DialogManager,
+{%- endif %}
+{%- if i1 %}
+    i18n: I18nContext,
 {%- endif %}
 ) -> None:
     await message.answer("👋")
-{%- if 'aiogram-dialog' in features %}
+{%- if i1 %}
+
+    await message.answer(i18n.get("start"))
+{%- endif %}
+{%- if ad %}
 
     await dialog_manager.start(
         ExampleSG.example,
+        mode=StartMode.RESET_STACK,
     )
 {%- endif %}
+

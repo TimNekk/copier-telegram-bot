@@ -59,6 +59,9 @@ COPY migrations /app/migrations
 COPY alembic.ini /app/alembic.ini
 {%- endif %}
 COPY --from=builder /app/.venv /app/.venv
+{%- if 'i18n' in features %}
+COPY locales/ ./locales
+{%- endif %}
 COPY bot/ ./bot
 
 ENTRYPOINT ["/entrypoint.sh"]
