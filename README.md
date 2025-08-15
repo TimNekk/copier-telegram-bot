@@ -72,6 +72,7 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 #### Tooling
 
 - [x] [**`i18n`**](https://github.com/aiogram/i18n) 🌐 Multiple languages support
+- [x] [**`Dependabot`**](https://github.com/dependabot) 🤖 Automatic dependency updates
 - [x] [**`Pydantic Settings`**](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) ✅ Safe config management with type checking
 - [x] [**`Dynaconf`**](https://www.dynaconf.com/) ⚙️ Configs for dev/test/prod environments
 - [x] [**`Ruff`**](https://docs.astral.sh/ruff/) 🪶 Super-fast code linting and cleanup
@@ -138,6 +139,8 @@ Below is the folder structure of the generated project:
 │   
 ├── .dockerignore                # Specifies files and directories to ignore in Docker builds
 ├── .gitignore                   # Specifies files and directories to ignore in Git version control
+├── .github
+│   └── dependabot.yml           # Automatic dependency updates
 ├── .python-version              # Python version specification file for version managers like pyenv
 ├── .env                         # Environment variable settings file
 ├── .template.env                # Template file for environment variables
@@ -170,7 +173,6 @@ Copier will ask you a lot of questions. Answer them to properly generate the tem
 
 Help shape the future! Planned improvements:
 
-- [ ] [**`Dependabot`**](https://github.com/dependabot) 🤖 Add dependencies auto-update to generated project for security and freshness
 - [ ] [**`Testing`**](https://docs.pytest.org/) ✅ Add testing framework
 - [ ] [**`Flake8`**](https://flake8.pycqa.org/) / [**`wemake`**](https://wemake-python-styleguide.readthedocs.io/en/latest/) 🧹 Alternative strict linting for code quality fans
 
