@@ -169,6 +169,33 @@ settings_manager:
         "Dynaconf          | Multi-source configuration manager with environment-aware settings":
             value: "dynaconf"
 
+dependency_bot:
+    type: str
+    help: Which dependency bot do you want to use?
+    choices:
+        "Dependabot        | GitHub's dependency bot":
+            value: "dependabot"
+        "None              | Skip dependency bot configuration":
+            value: ""
+
+dependency_bot_interval:
+    type: str
+    help: How often do you want to update dependencies?
+    choices:
+        "Daily             | Update dependencies every day":
+            value: "daily"
+        "Weekly            | Update dependencies every week":
+            value: "weekly"
+        "Monthly           | Update dependencies every month":
+            value: "monthly"
+    when: "{{ dependency_bot }}"
+
+dependency_bot_prefix:
+    type: str
+    help: What commit message and PR title prefix do you want to use for dependency-update bot? (optional)
+    default: "⬆️"
+    when: "{{ dependency_bot }}"
+
 git_init:
     type: bool
     help: Do you want to initialize git?
