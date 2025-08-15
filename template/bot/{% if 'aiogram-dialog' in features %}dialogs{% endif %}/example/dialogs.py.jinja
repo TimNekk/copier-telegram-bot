@@ -2,13 +2,23 @@ from __future__ import annotations
 
 from aiogram_dialog import Dialog, Window
 from aiogram_dialog.widgets.kbd import Cancel
+{%- if 'i18n' not in features %}
 from aiogram_dialog.widgets.text import Const
+{%- endif %}
+{% if 'i18n' in features %}
+from bot.dialogs.common.widgets import I18NFormat
+{%- endif %}
 from bot.states import ExampleSG
 
 example_dialog = Dialog(
     Window(
+{%- if 'i18n' in features %}
+        I18NFormat("example-dialog"),
+        Cancel(I18NFormat("cancel")),
+{%- else %}
         Const("Example dialog"),
         Cancel(Const("Cancel")),
+{%- endif %}
         state=ExampleSG.example,
     ),
 )

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydantic import DirectoryPath, NonNegativeFloat, {% if 'redis' in features or database == 'postgres' %}PositiveInt, {% endif %}SecretStr{% if database == 'postgres' %}, computed_field{% endif %}
+from pydantic import DirectoryPath, {% if 'throttling' in middlewares %}NonNegativeFloat, {% endif %}{% if 'redis' in features or database == 'postgres' %}PositiveInt, {% endif %}SecretStr{% if database == 'postgres' %}, computed_field{% endif %}
 from pydantic_settings import BaseSettings as PydanticBaseSettings
 from pydantic_settings import SettingsConfigDict
 
@@ -11,6 +11,9 @@ class BaseSettings(PydanticBaseSettings):
 
 class BotSettings(BaseSettings):
     token: SecretStr
+{%- if 'i18n' in features %}
+    default_locale: str
+{%- endif %}
 {%- if 'throttling' in middlewares %}
     rate_limit: NonNegativeFloat
 {%- endif %}{{ '\n\n' }}

@@ -1,42 +1,71 @@
+{%- set db = 'database' in middlewares -%}
+{%- set dp = 'dependency' in middlewares -%}
+{%- set lg = 'logging' in middlewares -%}
+{%- set th = 'throttling' in middlewares -%}
+{%- set ca = 'callback_answer' in middlewares -%}
+{%- set i1 = 'i18n' in middlewares -%}
 from __future__ import annotations
 
-from typing import TYPE_CHECKING{% if 'dependency' in middlewares %}, Any{% endif %}
-{% if 'callback_answer' in middlewares %}
+from typing import TYPE_CHECKING{% if dp %}, Any{% endif %}
+{%- if ca or i1 %}
+{% if ca %}
 from aiogram.utils.callback_answer import CallbackAnswerMiddleware
-{% endif %}
+{%- endif %}
+{%- if i1 %}
+from aiogram_i18n import I18nMiddleware
+from aiogram_i18n.cores import FluentCompileCore
+{%- endif %}
+
+{% else %}
+
+{% endif -%}
 if TYPE_CHECKING:
     from aiogram import Dispatcher
-{%- if 'database' in middlewares %}
+{%- if db %}
     from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 {%- endif %}
 
 
 def register_middlewares(
     dp: Dispatcher,
-{%- if 'dependency' in middlewares %}
+{%- if dp %}
     dependencies: dict[str, Any],
 {%- endif %}
-{%- if 'database' in middlewares %}
+{%- if db %}
     sessionmaker: async_sessionmaker[AsyncSession],
 {%- endif %}
+{%- if i1 %}
+    default_locale: str,
+{%- endif %}
 ) -> None:
-{%- if 'database' in middlewares %}
+{%- if db %}
     from .database import DatabaseMiddleware
-{%- endif %}{%- if 'dependency' in middlewares %}
+{%- endif %}{%- if dp %}
     from .dependency import DependencyMiddleware
-{%- endif %}{%- if 'logging' in middlewares %}
+{%- endif %}{%- if i1 %}
+    from .i18n import UserManager
+{%- endif %}{%- if lg %}
     from .logger import LoggingMiddleware
-{%- endif %}{%- if 'throttling' in middlewares %}
+{%- endif %}{%- if th %}
     from .throttling import ThrottlingMiddleware
 {%- endif %}
-{% if 'throttling' in middlewares %}
+{% if th %}
     dp.message.outer_middleware(ThrottlingMiddleware())
-{% endif %}{% if 'logging' in middlewares %}
+{% endif %}{% if lg %}
     dp.update.outer_middleware(LoggingMiddleware())
-{% endif %}{% if 'dependency' in middlewares %}
+{% endif %}{% if dp %}
     dp.update.outer_middleware(DependencyMiddleware(dependencies))
-{% endif %}{% if 'database' in middlewares %}
+{% endif %}{% if db %}
     dp.update.outer_middleware(DatabaseMiddleware(sessionmaker))
-{% endif %}{% if 'callback_answer' in middlewares %}
+{% endif %}{% if ca %}
     dp.callback_query.middleware(CallbackAnswerMiddleware())
+{% endif %}{% if i1 %}
+    i18n_middleware = I18nMiddleware(
+        core=FluentCompileCore(
+            path="locales/{locale}/LC_MESSAGES",
+        ),
+        manager=UserManager(),
+        default_locale=default_locale,
+    )
+    i18n_middleware.setup(dispatcher=dp)
 {% endif %}
