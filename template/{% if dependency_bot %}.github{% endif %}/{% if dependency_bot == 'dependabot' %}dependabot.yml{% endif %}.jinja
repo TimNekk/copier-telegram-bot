@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "{% if package_manager in ['poetry', 'pip'] %}pip{% elif package_manager == 'uv' %}uv{% endif %}"
+    directory: "/"
+    schedule:
+      interval: "{{ dependency_bot_interval }}"
+{%- if dependency_bot_prefix %}
+    commit-message:
+      prefix: "{{ dependency_bot_prefix }}"
+{%- endif %}
