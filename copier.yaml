@@ -33,6 +33,48 @@ _tasks:
       when: "{{ package_manager == 'pip' }}"
     - command: ["{{ _copier_python }}", "tasks/cleanup.py"]
 
+_message_before_copy: |
+    ‎
+    ▄▖    ▘      ▄▖  ▜              ▄   ▗   ▄▖       ▜   ▗   
+    ▌ ▛▌▛▌▌█▌▛▘  ▐ █▌▐ █▌▛▌▛▘▀▌▛▛▌  ▙▘▛▌▜▘  ▐ █▌▛▛▌▛▌▐ ▀▌▜▘█▌
+    ▙▖▙▌▙▌▌▙▖▌   ▐ ▙▖▐▖▙▖▙▌▌ █▌▌▌▌  ▙▘▙▌▐▖  ▐ ▙▖▌▌▌▙▌▐▖█▌▐▖▙▖
+        ▌                ▄▌                        ▌             
+
+    Thanks for using Copier Telegram Bot template by TimNekk!
+
+    You'll be asked a series of questions whose answers will be used to
+    generate a tailored project for you.
+
+_message_after_copy: |
+    
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⠿⠿⠿⠿⠶⠶⢤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⢀⠌⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠳⣄⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠍⡀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡟⡀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⡅⠀⠀⠀⠀⣴⣶⡆⠀⠀⠀⠀⣶⣶⡄⠀⠀⠀⠀⠓⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠙⠛⠁⠰⢦⠴⠀⠙⠛⠁⠀⠀⠀⠀⡄⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢠⠁⠀⠀⠀⠀⠀
+    ⠀⠀⠀⡠⢔⢜⠱⣤⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠤⠄⠓⠃⠐⠠⢀⠀⠀⠀
+    ⢀⠔⠁⠈⢀⠎⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠀⠀⠑⢄⠀
+    ⡇⠤⠒⡨⠁⠀⠀⠀⠀⢁⣴⠄⠀⠀⠀⠀⠀⠈⢖⠄⠀⠀⠀⠀⠀⢃⠢⢄⡀⡅
+    ⠘⠒⠒⣇⠀⠀⠀⠀⡠⣺⣿⠀⠀⠀⠀⠀⠀⠀⣸⣎⠄⡀⠀⠀⠀⠀⡗⣒⡺⠂
+    ⠀⠀⠀⠀⠛⠂⠙⠓⠛⠉⢏⣢⡄⠀⠀⠀⢀⣰⠛⠛⠳⠮⠥⠶⣒⠎⠁⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+    Your project "{{ project_name }}" has been created successfully!
+
+    Next steps:
+
+    1. Change directory to the project root:
+
+       $ cd {{ _copier_conf.dst_path }}
+
+    2. Fill in .env file
+
+    3. Run the bot:
+
+       $ {% if 'just' in features %}just up{% else %}docker compose up{% endif %}
+
 # Answers
 
 project_name:
