@@ -71,6 +71,7 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 
 #### Tooling
 
+- [x] [**`i18n`**](https://github.com/aiogram/i18n) 🌐 Multiple languages support
 - [x] [**`Pydantic Settings`**](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) ✅ Safe config management with type checking
 - [x] [**`Dynaconf`**](https://www.dynaconf.com/) ⚙️ Configs for dev/test/prod environments
 - [x] [**`Ruff`**](https://docs.astral.sh/ruff/) 🪶 Super-fast code linting and cleanup
@@ -112,10 +113,10 @@ Below is the folder structure of the generated project:
 │   │   
 │   ├── keyboards                # Defines inline and reply keyboards for user interaction
 │   │   ├── inline               # Inline keyboards
-│   │   └── default_commands.py  # Defualt commands setup
+│   │   └── default_commands.py  # Default commands setup
 │   │   
 │   ├── middleware               # Middleware modules to extend bot behavior
-│   │   ├── database.py          # Middleware to manage database interactions during eventxs
+│   │   ├── database.py          # Middleware to manage database interactions during events
 │   │   ├── dependency.py        # Dependency injection middleware for shared resources
 │   │   ├── logger.py            # Middleware to log events
 │   │   └── throttling.py        # Middleware to handle rate-limiting of requests
@@ -123,7 +124,12 @@ Below is the folder structure of the generated project:
 │   ├── services/                # Auxiliary services with business logic
 │   │   
 │   ├── __main__.py              # Entry point to run the bot application
-│   └── states.py                # FMS states
+│   └── states.py                # FSM states
+│   
+├── locales                      # Translations (Fluent `.ftl` files)
+│   └── en
+│       └── LC_MESSAGES
+│           └── bot.ftl          # English texts (add more locales similarly)
 │   
 ├── migrations                   # Database migration files (managed by Alembic)
 │   ├── versions/                # Directory containing individual migration scripts
@@ -164,8 +170,6 @@ Copier will ask you a lot of questions. Answer them to properly generate the tem
 
 Help shape the future! Planned improvements:
 
-- [ ] [**`Bot Internationalization`**](https://docs.aiogram.dev/en/latest/dispatcher/i18n.html) 🌐 Support multiple languages for global audiences
-- [ ] [**`Prompts Internationalization`**](https://github.com/aiogram/aiogram) 📋 Translate copier prompts
 - [ ] [**`Dependabot`**](https://github.com/dependabot) 🤖 Add dependencies auto-update to generated project for security and freshness
 - [ ] [**`Testing`**](https://docs.pytest.org/) ✅ Add testing framework
 - [ ] [**`Flake8`**](https://flake8.pycqa.org/) / [**`wemake`**](https://wemake-python-styleguide.readthedocs.io/en/latest/) 🧹 Alternative strict linting for code quality fans
