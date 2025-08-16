@@ -1,0 +1,15 @@
+from __future__ import annotations
+
+from aiogram import Router
+
+
+def get_handlers_router() -> Router:
+    from . import start{% if has_blocked_bot %}, user_block{% endif %}
+
+    router = Router(name=__name__)
+{%- if has_blocked_bot %}
+    router.include_router(user_block.router)
+{%- endif %}
+    router.include_router(start.router)
+
+    return router
