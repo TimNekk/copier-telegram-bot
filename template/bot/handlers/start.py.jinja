@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from aiogram_i18n import I18nContext
 {%- endif %}
 
-router = Router()
+router = Router(name=__name__)
 
 
 @router.message(CommandStart())
@@ -46,4 +46,3 @@ async def handle_start_command(
         mode=StartMode.RESET_STACK,
     )
 {%- endif %}
-
