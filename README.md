@@ -186,6 +186,7 @@ Help shape the future! Planned improvements:
 - [ ] [**`Testing`**](https://docs.pytest.org/) ✅ Add testing framework
 - [ ] [**`Flake8`**](https://flake8.pycqa.org/) / [**`wemake`**](https://wemake-python-styleguide.readthedocs.io/en/latest/) 🧹 Alternative strict linting for code quality fans
 - [ ] [**`Admin Role`**](https://docs.aiogram.dev/en/latest/dispatcher/filters/index.html) 🔒 Add admin filter
+- [ ] [**`Commands i18n`**](https://github.com/aiogram/aiogram_i18n) 🌐 Add i18n support for bot commands
 
 *Got ideas? Star ⭐ the repo or open an issue to collaborate!* 🚀
 
