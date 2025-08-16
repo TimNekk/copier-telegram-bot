@@ -1,0 +1,13 @@
+from __future__ import annotations
+
+from .base import Base
+{%- if 'user' in models %}
+from .user import UserModel
+{%- endif %}
+
+__all__ = [
+    "Base",
+{%- if 'user' in models %}
+    "UserModel",
+{%- endif %}
+]
