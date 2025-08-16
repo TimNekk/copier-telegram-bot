@@ -22,6 +22,7 @@ def register_middlewares(
     from .i18n import UserManager
     from .logger import LoggingMiddleware
     from .throttling import ThrottlingMiddleware
+    from .user_register import UserRegisterMiddleware
 
     dp.message.outer_middleware(ThrottlingMiddleware())
 
@@ -30,6 +31,8 @@ def register_middlewares(
     dp.update.outer_middleware(DependencyMiddleware(dependencies))
 
     dp.update.outer_middleware(DatabaseMiddleware(sessionmaker))
+
+    dp.message.middleware(UserRegisterMiddleware())
 
     dp.callback_query.middleware(CallbackAnswerMiddleware())
 
