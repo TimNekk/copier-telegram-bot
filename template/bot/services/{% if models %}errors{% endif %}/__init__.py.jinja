@@ -1,0 +1,7 @@
+# ruff: noqa: F403
+from __future__ import annotations
+
+from .base import *
+{%- if 'user' in models %}
+from .user import *
+{%- endif %}

@@ -1,0 +1,9 @@
+from __future__ import annotations
+
+from .base import ServiceError
+{%- if has_blocked_bot %}
+
+
+class UserNotFoundError(ServiceError):
+    pass
+{%- endif %}
