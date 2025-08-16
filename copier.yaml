@@ -155,6 +155,27 @@ database:
         "None              | Do not configure a database for this project":
             value: ""
 
+models:
+    type: str
+    help: Which pre-defined models do you want to add?
+    multiselect: true
+    choices:
+        "User              | id, username, first_name, second_name":
+            value: "user"
+    when: "{{ database }}"
+
+deep_link:
+    type: bool
+    help: Do you want to store user's deep link?
+    default: true
+    when: "{{ 'user' in models }}"
+
+has_blocked_bot:
+    type: bool
+    help: Do you want to store whether user has blocked bot?
+    default: true
+    when: "{{ 'user' in models }}"
+
 features:
     type: str
     help: What features do you want to use?
@@ -191,7 +212,10 @@ middlewares:
             validator: "{% if not database %}No database selected{% endif %}"
         "Callback Answer   | Automatically answer callback queries":
             value: "callback_answer"
-    validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency Middleware is required to use Throttling Middleware{% endif %}"
+        "User Register     | Add user to database on /start":
+            value: "user_register"
+            validator: "{% if not database %}No database selected{% elif 'user' not in models %}User model not selected{% endif %}"
+    validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency middleware is required to use Throttling middleware{% elif 'user_register' in middlewares and 'database' not in middlewares %}Database middleware is required to use User Register middleware{% endif %}"
 
 linter:
     type: str
