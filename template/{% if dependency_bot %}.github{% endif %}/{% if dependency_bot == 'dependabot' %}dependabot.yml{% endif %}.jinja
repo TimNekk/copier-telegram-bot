@@ -8,3 +8,32 @@ updates:
     commit-message:
       prefix: "{{ dependency_bot_prefix }}"
 {%- endif %}
+{%- if database == 'postgres' or 'redis' in features %}
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "{{ dependency_bot_interval }}"
+{%- if dependency_bot_prefix %}
+    commit-message:
+      prefix: "{{ dependency_bot_prefix }}"
+{%- endif %}
+{%- endif %}
+
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+    schedule:
+      interval: "{{ dependency_bot_interval }}"
+{%- if dependency_bot_prefix %}
+    commit-message:
+      prefix: "{{ dependency_bot_prefix }}"
+{%- endif %}
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "{{ dependency_bot_interval }}"
+{%- if dependency_bot_prefix %}
+    commit-message:
+      prefix: "{{ dependency_bot_prefix }}"
+{%- endif %}
