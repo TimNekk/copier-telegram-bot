@@ -1,31 +1,34 @@
 <div align="center">
-    <h1 "><code>Telegram Bot Template</code></h1>
+    <h1><code>Telegram Bot Template</code></h1>
     <div>
         <a href="https://github.com/copier-org/copier">
             <picture>
-               <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-black.json&style=for-the-badge&labelColor=010409&color=1e242a" />
-               <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-black.json&style=for-the-badge&labelColor=010409&color=f0f1f2" />
-               <img alt="Copier" />
-             </picture>
+                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-black.json&style=for-the-badge&labelColor=010409&color=1e242a" />
+                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-black.json&style=for-the-badge&labelColor=010409&color=f0f1f2" />
+                <img alt="Copier" />
+            </picture>
         </a>
-        <picture>
-           <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
-           <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
-           <img alt="Python 3.9 - 3.13" />
-         </picture>
+        <p/>
+        <a href="https://www.python.org/">
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+                <img alt="Python 3.9 - 3.13" />
+            </picture>
+        </a>
         <a href="https://github.com/astral-sh/ruff">
             <picture>
-               <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Linted by Ruff-1e242a?style=for-the-badge&logoColor=30173d&labelColor=D7FF64&logo=ruff" />
-               <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Linted by Ruff-f0f1f2?style=for-the-badge&logoColor=30173d&labelColor=D7FF64&logo=ruff" />
-               <img alt="Linted by Ruff" />
-             </picture>
+                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Linted by Ruff-1e242a?style=for-the-badge&logoColor=30173d&labelColor=D7FF64&logo=ruff" />
+                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Linted by Ruff-f0f1f2?style=for-the-badge&logoColor=30173d&labelColor=D7FF64&logo=ruff" />
+                <img alt="Linted by Ruff" />
+            </picture>
         </a>
         <a href="https://github.com/TimNekk/copier-telegram-bot/blob/main/LICENSE.md">
             <picture>
-               <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Apache License 2.0-1e242a?style=for-the-badge&logoColor=1e242a&labelColor=white&logo=googledocs" />
-               <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Apache License 2.0-f0f1f2?style=for-the-badge&logoColor=white&labelColor=1f2328&logo=googledocs" />
-               <img alt="Apache License 2.0" />
-             </picture>
+                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Apache License 2.0-1e242a?style=for-the-badge&logoColor=1e242a&labelColor=white&logo=googledocs" />
+                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Apache License 2.0-f0f1f2?style=for-the-badge&logoColor=white&labelColor=1f2328&logo=googledocs" />
+                <img alt="Apache License 2.0" />
+            </picture>
         </a>
     </div>
 </div>
@@ -61,7 +64,7 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 - [x] [**`PostgreSQL`**](https://www.postgresql.org/) 🐘 Powerful database for complex projects
 - [x] [**`SQLAlchemy`**](https://www.sqlalchemy.org/) 🛠️ Work with databases using Python code
 - [x] [**`Alembic`**](https://alembic.sqlalchemy.org/) ⏳ Track and apply database changes easily
-- [x] [**`User Table`**](./example/bot/database/models/user.py) 👤 id, username, first_name, last_name, etc.
+- [x] [**`User Table`**](./example/bot/database/models/user.py) 👤 id, username, first_name, last_name, etc
 
 #### Middlewares
 
@@ -140,7 +143,7 @@ Below is the folder structure of the generated project:
 │   
 ├── migrations                   # Database migration files (managed by Alembic)
 │   ├── versions/                # Directory containing individual migration scripts
-│   │   └── *_add_users_table.py # Creates users table
+│   │   └── add_users_table.py # Creates users table
 │   ├── env.py                   # Alembic environment configuration file
 │   └── script.py.mako           # Template for generating new migration scripts
 │   
@@ -165,8 +168,8 @@ Below is the folder structure of the generated project:
 
 Before using the **Copier Telegram Bot** template, ensure you have the following installed:
 
-- **Copier**: Refer to the [installation guide](https://copier.readthedocs.io/en/latest/#installation).
-- **Copier Templates Extensions**: Refer to the [repository](https://github.com/copier-org/copier-templates-extensions?tab=readme-ov-file#installation) for installation instructions.
+- **Copier**: Refer to the [installation guide](https://copier.readthedocs.io/en/latest/#installation)
+- **Copier Templates Extensions**: Refer to the [repository](https://github.com/copier-org/copier-templates-extensions?tab=readme-ov-file#installation) for installation instructions
 
 Once these prerequisites are installed, you're ready to use the template!
 
