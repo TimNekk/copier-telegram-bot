@@ -9,6 +9,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 int_pk = Annotated[int, mapped_column(primary_key=True)]
 big_int_pk = Annotated[int, mapped_column(BigInteger, primary_key=True)]
 str_255 = Annotated[str, mapped_column(String(255))]
+str_64 = Annotated[str, mapped_column(String(64))]
 str_32 = Annotated[str, mapped_column(String(32))]
 decimal = Annotated[Decimal, mapped_column(Numeric(10, 2))]
 
