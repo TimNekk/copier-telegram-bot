@@ -17,7 +17,7 @@ from bot.middleware import register_middlewares
 
 
 async def on_startup() -> None:
-    logger.info("Bot starting...")
+    logger.info("bot starting...")
 
     register_middlewares(
         dp,
@@ -33,15 +33,15 @@ async def on_startup() -> None:
     await set_default_commands(bot)
 
     bot_info = await bot.get_me()
-    logger.info(f"Name     - {bot_info.full_name}")
-    logger.info(f"Username - @{bot_info.username}")
-    logger.info(f"ID       - {bot_info.id}")
+    logger.info(f"name     - {bot_info.full_name}")
+    logger.info(f"username - @{bot_info.username}")
+    logger.info(f"id       - {bot_info.id}")
 
-    logger.info("Bot started!")
+    logger.info("bot started")
 
 
 async def on_shutdown() -> None:
-    logger.info("Bot stopping...")
+    logger.info("bot stopping...")
 
     await remove_default_commands(bot)
 
@@ -51,7 +51,7 @@ async def on_shutdown() -> None:
     await bot.delete_webhook()
     await bot.session.close()
 
-    logger.info("Bot stopped!")
+    logger.info("bot stopped")
 
 
 async def main() -> None:

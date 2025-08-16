@@ -84,6 +84,8 @@ class LoggingMiddleware(BaseMiddleware):
         print_attrs: dict[str, Any] = {
             "user_id": my_chat_member.from_user.id,
             "chat_id": my_chat_member.chat.id,
+            "old_state": my_chat_member.old_chat_member.status,
+            "new_state": my_chat_member.new_chat_member.status,
         }
 
         return print_attrs

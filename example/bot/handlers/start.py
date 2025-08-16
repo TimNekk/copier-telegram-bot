@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from aiogram_dialog import DialogManager
     from aiogram_i18n import I18nContext
 
-router = Router()
+router = Router(name=__name__)
 
 
 @router.message(CommandStart())
@@ -30,4 +30,3 @@ async def handle_start_command(
         ExampleSG.example,
         mode=StartMode.RESET_STACK,
     )
-
