@@ -4,6 +4,7 @@
 {%- set th = 'throttling' in middlewares -%}
 {%- set ca = 'callback_answer' in middlewares -%}
 {%- set i1 = 'i18n' in middlewares -%}
+{%- set ur = 'user_register' in middlewares -%}
 from __future__ import annotations
 
 from typing import TYPE_CHECKING{% if dp %}, Any{% endif %}
@@ -48,6 +49,8 @@ def register_middlewares(
     from .logger import LoggingMiddleware
 {%- endif %}{%- if th %}
     from .throttling import ThrottlingMiddleware
+{%- endif %}{%- if ur %}
+    from .user_register import UserRegisterMiddleware
 {%- endif %}
 {% if th %}
     dp.message.outer_middleware(ThrottlingMiddleware())
@@ -57,6 +60,8 @@ def register_middlewares(
     dp.update.outer_middleware(DependencyMiddleware(dependencies))
 {% endif %}{% if db %}
     dp.update.outer_middleware(DatabaseMiddleware(sessionmaker))
+{% endif %}{% if ur %}
+    dp.message.middleware(UserRegisterMiddleware())
 {% endif %}{% if ca %}
     dp.callback_query.middleware(CallbackAnswerMiddleware())
 {% endif %}{% if i1 %}
