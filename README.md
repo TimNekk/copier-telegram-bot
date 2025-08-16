@@ -61,6 +61,7 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 - [x] [**`PostgreSQL`**](https://www.postgresql.org/) 🐘 Powerful database for complex projects
 - [x] [**`SQLAlchemy`**](https://www.sqlalchemy.org/) 🛠️ Work with databases using Python code
 - [x] [**`Alembic`**](https://alembic.sqlalchemy.org/) ⏳ Track and apply database changes easily
+- [x] [**`User Table`**](./example/bot/database/models/user.py) 👤 id, username, first_name, last_name, etc.
 
 #### Middlewares
 
@@ -68,6 +69,8 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 - [x] [**`Throttling`**](https://docs.aiogram.dev/en/latest/dispatcher/middlewares.html) 🛑 Stop spam with automatic speed limits
 - [x] [**`Database Sessions`**](https://docs.sqlalchemy.org/en/20/orm/session_basics.html) ♻️ Auto-manage database connections
 - [x] [**`Loguru`**](https://github.com/Delgan/loguru) 📜 Simple logging with colors and fun
+- [x] [**`User Register`**](./example/bot/middleware/user_register.py) 📝 Adds a user to the database on /start
+- [x] [**`Callback Answer`**](https://docs.aiogram.dev/en/latest/utils/callback_answer.html) 🔄 Automatically answer callback queries
 
 #### Tooling
 
@@ -98,7 +101,8 @@ Below is the folder structure of the generated project:
 │   │   
 │   ├── database                 # Database-related modules and models
 │   │   ├── models               # Directory for database model definitions
-│   │   │   └── base.py          # Base class for database models
+│   │   │   ├── base.py          # Base class for database models
+│   │   │   └── user.py          # User table model
 │   │   └── database.py          # Database connection
 │   │   
 │   ├── dialogs                  # Dialog flow and interaction logic
@@ -120,9 +124,11 @@ Below is the folder structure of the generated project:
 │   │   ├── database.py          # Middleware to manage database interactions during events
 │   │   ├── dependency.py        # Dependency injection middleware for shared resources
 │   │   ├── logger.py            # Middleware to log events
-│   │   └── throttling.py        # Middleware to handle rate-limiting of requests
+│   │   ├── throttling.py        # Middleware to handle rate-limiting of requests
+│   │   └── user_register.py     # Add user to DB on /start
 │   │   
 │   ├── services/                # Auxiliary services with business logic
+│   │   └── user.py              # User CRUD and helpers
 │   │   
 │   ├── __main__.py              # Entry point to run the bot application
 │   └── states.py                # FSM states
@@ -134,6 +140,7 @@ Below is the folder structure of the generated project:
 │   
 ├── migrations                   # Database migration files (managed by Alembic)
 │   ├── versions/                # Directory containing individual migration scripts
+│   │   └── *_add_users_table.py # Creates users table
 │   ├── env.py                   # Alembic environment configuration file
 │   └── script.py.mako           # Template for generating new migration scripts
 │   
@@ -175,6 +182,7 @@ Help shape the future! Planned improvements:
 
 - [ ] [**`Testing`**](https://docs.pytest.org/) ✅ Add testing framework
 - [ ] [**`Flake8`**](https://flake8.pycqa.org/) / [**`wemake`**](https://wemake-python-styleguide.readthedocs.io/en/latest/) 🧹 Alternative strict linting for code quality fans
+- [ ] [**`Admin Role`**](https://docs.aiogram.dev/en/latest/dispatcher/filters/index.html) 🔒 Add admin filter
 
 *Got ideas? Star ⭐ the repo or open an issue to collaborate!* 🚀
 
