@@ -7,15 +7,15 @@ from aiogram_dialog import setup_dialogs
 {%- endif %}
 from loguru import logger
 
+from bot.commands import (
+    remove_commands,
+    set_commands,
+)
 from bot.core.loader import bot, dp, {% if 'database' in middlewares %}sessionmaker, {% endif %}settings
 {%- if 'aiogram-dialog' in features %}
 from bot.dialogs import get_dialogs_router
 {%- endif %}
 from bot.handlers import get_handlers_router
-from bot.keyboards.default_commands import (
-    remove_default_commands,
-    set_default_commands,
-)
 {%- if middlewares %}
 from bot.middleware import register_middlewares
 {%- endif %}
@@ -42,7 +42,7 @@ async def on_startup() -> None:
 {%- if 'aiogram-dialog' in features %}
     setup_dialogs(dp)
 {% endif %}
-    await set_default_commands(bot)
+    await set_commands(bot)
 
     bot_info = await bot.get_me()
     logger.info(f"name     - {bot_info.full_name}")
@@ -55,7 +55,7 @@ async def on_startup() -> None:
 async def on_shutdown() -> None:
     logger.info("bot stopping...")
 
-    await remove_default_commands(bot)
+    await remove_commands(bot)
 
     await dp.storage.close()
     await dp.fsm.storage.close()

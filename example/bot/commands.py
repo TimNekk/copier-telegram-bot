@@ -7,19 +7,17 @@ from aiogram.types import BotCommand, BotCommandScopeDefault
 if TYPE_CHECKING:
     from aiogram import Bot
 
-user_commands = [
+default_commands = [
     BotCommand(command="start", description="🚀 Start bot"),
 ]
 
 
-async def set_default_commands(bot: Bot) -> None:
-    await remove_default_commands(bot)
-
+async def set_commands(bot: Bot) -> None:
     await bot.set_my_commands(
-        commands=user_commands,
+        commands=default_commands,
         scope=BotCommandScopeDefault(),
     )
 
 
-async def remove_default_commands(bot: Bot) -> None:
+async def remove_commands(bot: Bot) -> None:
     await bot.delete_my_commands(scope=BotCommandScopeDefault())

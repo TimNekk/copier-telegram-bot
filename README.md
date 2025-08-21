@@ -120,8 +120,7 @@ Below is the folder structure of the generated project:
 │   │   └── start.py             # Handler for the /start command
 │   │   
 │   ├── keyboards                # Defines inline and reply keyboards for user interaction
-│   │   ├── inline               # Inline keyboards
-│   │   └── default_commands.py  # Default commands setup
+│   │   └── inline               # Inline keyboards
 │   │   
 │   ├── middleware               # Middleware modules to extend bot behavior
 │   │   ├── database.py          # Middleware to manage database interactions during events
@@ -134,6 +133,7 @@ Below is the folder structure of the generated project:
 │   │   └── user.py              # User CRUD and helpers
 │   │   
 │   ├── __main__.py              # Entry point to run the bot application
+│   ├── commands.py              # Commands setup
 │   └── states.py                # FSM states
 │   
 ├── locales                      # Translations (Fluent `.ftl` files)
