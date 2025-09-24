@@ -30,10 +30,13 @@ exclude = [
 "__init__.py" = [
     "PLC0415", # pylint: Import statements outside of a module's top-level scope
 ]
+"bot/services/*" = [
+    "ARG005", # Ruff-specific: Unused lambda argument
+]
 
 [tool.uv]
 dev-dependencies = [
-    "ruff==0.12.9",
+    "ruff==0.13.1",
 ]
 
 [tool.ruff.lint]

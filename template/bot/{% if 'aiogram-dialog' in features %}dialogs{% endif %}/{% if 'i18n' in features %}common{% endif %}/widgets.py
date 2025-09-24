@@ -30,7 +30,7 @@ class I18NFormat(Text):
 
     @staticmethod
     async def _resolve(
-        value: TextWidget | MagicFilter | str | float | bool,  # noqa: FBT001
+        value: TextWidget | MagicFilter | str | float | bool,
         data: dict,
         manager: DialogManager,
     ) -> Any:

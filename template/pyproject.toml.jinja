@@ -34,6 +34,9 @@ exclude = [
 "__init__.py" = [
     "PLC0415", # pylint: Import statements outside of a module's top-level scope
 ]
+"bot/services/*" = [
+    "ARG005", # Ruff-specific: Unused lambda argument
+]
 
 [tool.ruff.lint]
 select = ["ALL"]
