@@ -6,7 +6,7 @@ dynaconf==3.2.11
 loguru==0.7.3
 orjson==3.11.3
 psycopg[binary]==3.2.10
-pydantic-settings==2.10.1
+pydantic-settings==2.11.0
 redis==6.4.0
 sqlalchemy==2.0.43
 uvloop==0.21.0 ; sys_platform != "win32"
