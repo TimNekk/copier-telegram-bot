@@ -11,9 +11,9 @@
         <p/>
         <a href="https://www.python.org/">
             <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
-                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
-                <img alt="Python 3.9 - 3.13" />
+                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.14-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.14-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+                <img alt="Python 3.9 - 3.14" />
             </picture>
         </a>
         <a href="https://github.com/astral-sh/ruff">
@@ -48,7 +48,7 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 #### Core Infrastructure
 
 - [x] [**`Docker Compose`**](https://docs.docker.com/compose/) 🐳 Launch bot + services with one command
-- [x] [**`Python 3.9–3.13`**](https://www.python.org/) 🐍 Choose your Python version easily
+- [x] [**`Python 3.9–3.14`**](https://www.python.org/) 🐍 Choose your Python version easily
 - [x] [**`uv`**](https://docs.astral.sh/uv/) 🚀 Fast dependency management powered by Rust
 - [x] [**`Poetry`**](https://python-poetry.org/) 📦 Manage dependencies safely with virtual environments
 - [x] [**`pip`**](https://pip.pypa.io/) 📜 Classic Python package installer

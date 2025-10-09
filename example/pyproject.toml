@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Telegram bot that is just an exmaple"
 authors = [{ name = "Timofey Kochetov", email = "herew26@gmail.com" }]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     "aiogram-dialog==2.3.1",
     "aiogram-i18n[compiler]==1.4",

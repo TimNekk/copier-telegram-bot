@@ -130,6 +130,9 @@ python_version:
     type: str
     help: What version of Python do you want to use?
     choices:
+        "3.14":
+            value: "3.14"
+            validator: "{% if package_manager in ['poetry', 'pip'] and not '3.14'|is_installed %}not installed{% endif %}"
         "3.13":
             value: "3.13"
             validator: "{% if package_manager in ['poetry', 'pip'] and not '3.13'|is_installed %}not installed{% endif %}"
