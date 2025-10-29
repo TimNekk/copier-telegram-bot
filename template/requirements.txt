@@ -1,7 +1,7 @@
 aiogram==3.22.0
 aiogram-dialog==2.3.1
 aiogram-i18n[compiler]==1.4
-alembic==1.17.0
+alembic==1.17.1
 dynaconf==3.2.12
 loguru==0.7.3
 orjson==3.11.4
