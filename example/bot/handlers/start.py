@@ -6,7 +6,7 @@ from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram_dialog import StartMode
 
-from bot.states import ExampleSG
+from bot.states.exmaple import ExampleSG
 
 if TYPE_CHECKING:
     from aiogram import types
