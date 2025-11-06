@@ -3,5 +3,9 @@ from __future__ import annotations
 from .base import ServiceError
 
 
-class UserNotFoundError(ServiceError):
+class UserServiceError(ServiceError):
+    pass
+
+
+class UserNotFoundError(UserServiceError):
     pass
