@@ -12,7 +12,10 @@ if TYPE_CHECKING:
 
     from redis.asyncio import Redis
 
-DEFAULT_TTL = 10
+MINUTE = 60
+HOUR = 60 * MINUTE
+DAY = 24 * HOUR
+DEFAULT_TTL = 5 * MINUTE
 
 
 def build_key(*args: tuple[str, Any], **kwargs: dict[str, Any]) -> str:
@@ -80,17 +83,31 @@ def cached(
 async def clear_cache(
     func: Callable,
     *args: Any,
+    namespace: str = "main",
     **kwargs: Any,
 ) -> None:
     """Clear the cache for a specific function and arguments.
 
+    If an argument or keyword argument is not provided, it will be treated as a wildcard,
+    matching all cache entries regardless of that parameter's value.
+
     :param func: Function to clear cache for.
-    :param args: Arguments to pass to the function.
-    :param kwargs: Keyword arguments to pass to the function.
+    :param args: Arguments to match. Only provided arguments will be used for matching.
+    :param namespace: Cache namespace to clear. Defaults to "main".
+    :param kwargs: Keyword arguments to match. Only provided arguments will be used for matching.
     """
-    namespace: str = kwargs.get("namespace", "main")
+    # Build partial key from only the provided args/kwargs
+    partial_key = build_key(*args, **kwargs)
 
-    key = build_key(*args, **kwargs)
-    key = f"{namespace}:{func.__module__}:{func.__name__}:{key}"
+    # Handle empty key case - match all entries for this function
+    if partial_key:
+        pattern = f"{namespace}:{func.__module__}:{func.__name__}:{partial_key}*"
+    else:
+        pattern = f"{namespace}:{func.__module__}:{func.__name__}:*"
 
-    await redis_client.delete(key)
+    # Find all keys matching the pattern
+    matching_keys = [key async for key in redis_client.scan_iter(match=pattern)]
+
+    # Delete all matching keys
+    if matching_keys:
+        await redis_client.delete(*matching_keys)
