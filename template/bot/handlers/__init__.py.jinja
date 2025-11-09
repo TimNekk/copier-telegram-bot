@@ -4,9 +4,12 @@ from aiogram import Router
 
 
 def get_handlers_router() -> Router:
-    from . import start{% if has_blocked_bot %}, user_block{% endif %}
+    from . import {% if 'aiogram-dialog' in features %}error, {% endif %}start{% if has_blocked_bot %}, user_block{% endif %}
 
     router = Router(name=__name__)
+{%- if 'aiogram-dialog' in features %}
+    router.include_router(error.router)
+{%- endif %}
 {%- if has_blocked_bot %}
     router.include_router(user_block.router)
 {%- endif %}
