@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from sqlalchemy import exists, select
+from sqlalchemy import exists, select, update
 
 from bot.cache.redis import build_key, cached, clear_cache
 from bot.database.models import UserModel
@@ -78,6 +78,6 @@ async def set_has_blocked_bot(
     if user.has_blocked_bot == has_blocked_bot:
         return
 
-    user.has_blocked_bot = has_blocked_bot
-    await session.flush()
+    await session.execute(update(UserModel).where(UserModel.id == user_id).values(has_blocked_bot=has_blocked_bot))
+
     await clear_cache(get_user, user_id)
