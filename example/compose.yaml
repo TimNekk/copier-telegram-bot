@@ -16,7 +16,7 @@ services:
       - app
 
   postgres:
-    image: postgres:17-alpine
+    image: postgres:18-alpine
     environment:
       - POSTGRES_DB=${POSTGRES__NAME}
       - POSTGRES_USER=${POSTGRES__USER}
@@ -30,7 +30,7 @@ services:
       - app
 
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     volumes:
       - redis_data:/data
     command: redis-server --appendonly yes --port ${REDIS__PORT}
