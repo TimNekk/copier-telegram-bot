@@ -37,4 +37,10 @@ class ContextUpdater(ContextHook):
             if "i18n" not in context["middlewares"]:
                 context["middlewares"].append("i18n")
         
+        if context.get("product_analytics") == "posthog":
+            if context.get("middlewares") is None:
+                context["middlewares"] = []
+            if "analytics" not in context["middlewares"]:
+                context["middlewares"].append("analytics")
+        
         return context

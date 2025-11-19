@@ -40,10 +40,16 @@ class RedisSettings(BaseSettings):
     port: PositiveInt
 
 
+class PosthogSettings(BaseSettings):
+    project_api_key: SecretStr
+    host: str
+
+
 class Settings(BaseSettings):
     bot: BotSettings
     file_log: FileLogSettings
     postgres: PostgresSettings
     redis: RedisSettings
+    posthog: PosthogSettings
 
     model_config = SettingsConfigDict(env_nested_delimiter="__")

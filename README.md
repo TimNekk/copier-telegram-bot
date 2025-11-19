@@ -11,9 +11,9 @@
         <p/>
         <a href="https://www.python.org/">
             <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.14-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
-                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.14-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
-                <img alt="Python 3.9 - 3.14" />
+                <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-1e242a?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+                <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/-Python 3.9 — 3.13-f0f1f2?style=for-the-badge&logoColor=white&labelColor=3776AB&logo=python" />
+                <img alt="Python 3.9 - 3.13" />
             </picture>
         </a>
         <a href="https://github.com/astral-sh/ruff">
@@ -48,7 +48,7 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 #### Core Infrastructure
 
 - [x] [**`Docker Compose`**](https://docs.docker.com/compose/) 🐳 Launch bot + services with one command
-- [x] [**`Python 3.9–3.14`**](https://www.python.org/) 🐍 Choose your Python version easily
+- [x] [**`Python 3.9–3.13`**](https://www.python.org/) 🐍 Choose your Python version easily
 - [x] [**`uv`**](https://docs.astral.sh/uv/) 🚀 Fast dependency management powered by Rust
 - [x] [**`Poetry`**](https://python-poetry.org/) 📦 Manage dependencies safely with virtual environments
 - [x] [**`pip`**](https://pip.pypa.io/) 📜 Classic Python package installer
@@ -77,6 +77,7 @@ Built with [Copier](https://copier.readthedocs.io/), this template lets you togg
 
 #### Tooling
 
+- [x] [**`PostHog`**](https://posthog.com/) 📊 Product analytics with user tracking and event capture
 - [x] [**`i18n`**](https://github.com/aiogram/i18n) 🌐 Multiple languages support
 - [x] [**`Dependabot`**](https://github.com/dependabot) 🤖 Automatic dependency updates
 - [x] [**`Pydantic Settings`**](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) ✅ Safe config management with type checking
@@ -123,6 +124,7 @@ Below is the folder structure of the generated project:
 │   │   └── inline               # Inline keyboards
 │   │   
 │   ├── middleware               # Middleware modules to extend bot behavior
+│   │   ├── analytics.py         # Middleware to identify user for analytics
 │   │   ├── database.py          # Middleware to manage database interactions during events
 │   │   ├── dependency.py        # Dependency injection middleware for shared resources
 │   │   ├── logger.py            # Middleware to log events
@@ -132,9 +134,11 @@ Below is the folder structure of the generated project:
 │   ├── services/                # Auxiliary services with business logic
 │   │   └── user.py              # User CRUD and helpers
 │   │   
+│   ├── states/                  # FSM states
+│   │   └── example.py           # Example states
+│   │   
 │   ├── __main__.py              # Entry point to run the bot application
-│   ├── commands.py              # Commands setup
-│   └── states.py                # FSM states
+│   └── commands.py              # Commands setup
 │   
 ├── locales                      # Translations (Fluent `.ftl` files)
 │   └── en

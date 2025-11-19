@@ -10,7 +10,7 @@ from aiogram.filters import CommandStart
 from aiogram_dialog import StartMode
 {%- endif %}
 {% if ad %}
-from bot.states.exmaple import ExampleSG
+from bot.states.example import ExampleSG
 {% endif %}
 if TYPE_CHECKING:
     from aiogram import types
@@ -19,6 +19,9 @@ if TYPE_CHECKING:
 {%- endif %}
 {%- if i1 %}
     from aiogram_i18n import I18nContext
+{%- endif %}
+{%- if product_analytics == 'posthog' %}
+    from posthog import Posthog
 {%- endif %}
 
 router = Router(name=__name__)
@@ -33,7 +36,13 @@ async def handle_start_command(
 {%- if i1 %}
     i18n: I18nContext,
 {%- endif %}
+{%- if product_analytics == 'posthog' %}
+    posthog: Posthog,
+{%- endif %}
 ) -> None:
+{%- if product_analytics == 'posthog' %}
+    posthog.capture(event="command_used", properties={"command": "top"})
+{%- endif %}
     await message.answer("👋")
 {%- if i1 %}
 

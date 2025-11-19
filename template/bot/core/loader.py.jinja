@@ -7,6 +7,9 @@ from aiogram.enums import ParseMode
 from aiogram.fsm.storage.base import DefaultKeyBuilder
 from aiogram.fsm.storage.redis import RedisStorage
 {%- endif %}
+{%- if product_analytics == 'posthog' %}
+from posthog import Posthog
+{%- endif %}
 {%- if 'redis' in features %}
 from redis.asyncio import ConnectionPool, Redis
 {%- endif %}
@@ -50,4 +53,10 @@ dp = Dispatcher()
 {%- endif %}
 {% if database == 'postgres' %}
 sessionmaker = get_sessionmaker(url={% if settings_manager == 'pydantic-settings' %}settings.postgres.url.get_secret_value(){% elif settings_manager == 'dynaconf' %}f"postgresql+psycopg://{settings.postgres.user}:{settings.postgres.password}@{settings.postgres.host}:{settings.postgres.port}/{settings.postgres.name}"{% endif %})
+{% endif %}{% if product_analytics == 'posthog' %}
+posthog_client = Posthog(
+    project_api_key=settings.posthog.project_api_key{% if settings_manager == 'pydantic-settings' %}.get_secret_value(){% endif %},
+    host=settings.posthog.host,
+    enable_exception_autocapture=True,
+)
 {% endif %}

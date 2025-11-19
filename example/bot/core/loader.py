@@ -5,6 +5,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.base import DefaultKeyBuilder
 from aiogram.fsm.storage.redis import RedisStorage
+from posthog import Posthog
 from redis.asyncio import ConnectionPool, Redis
 
 from bot.core.settings import Settings
@@ -40,3 +41,9 @@ dp = Dispatcher(
 )
 
 sessionmaker = get_sessionmaker(url=settings.postgres.url.get_secret_value())
+
+posthog_client = Posthog(
+    project_api_key=settings.posthog.project_api_key.get_secret_value(),
+    host=settings.posthog.host,
+    enable_exception_autocapture=True,
+)

@@ -1,23 +1,24 @@
 [project]
-name = "exmaple-bot"
+name = "example-bot"
 version = "0.1.0"
-description = "Telegram bot that is just an exmaple"
+description = "Telegram bot that is just an example"
 authors = [{ name = "Timofey Kochetov", email = "herew26@gmail.com" }]
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 dependencies = [
+    "aiogram==3.22.0",
     "aiogram-dialog==2.3.1",
     "aiogram-i18n[compiler]==1.4",
-    "aiogram==3.22.0",
-    "alembic==1.16.4",
+    "alembic==1.17.2",
     "loguru==0.7.3",
-    "orjson==3.11.2",
-    "psycopg[binary]==3.2.9",
-    "pydantic-settings==2.10.1",
+    "orjson==3.11.4",
+    "posthog==7.0.1",
+    "psycopg[binary]==3.2.12",
+    "pydantic-settings==2.12.0",
     "redis==6.4.0",
-    "sqlalchemy==2.0.43",
-    "uvloop==0.21.0 ; sys_platform != 'win32'",
-    "winloop==0.2.2 ; sys_platform == 'win32'",
+    "sqlalchemy==2.0.44",
+    "uvloop==0.22.1 ; sys_platform != 'win32'",
+    "winloop==0.3.1 ; sys_platform == 'win32'",
 ]
 
 [tool.ruff]
@@ -34,9 +35,9 @@ exclude = [
     "ARG005", # Ruff-specific: Unused lambda argument
 ]
 
-[tool.uv]
-dev-dependencies = [
-    "ruff==0.13.1",
+[dependency-groups]
+dev = [
+    "ruff==0.14.5",
 ]
 
 [tool.ruff.lint]

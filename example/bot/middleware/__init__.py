@@ -17,6 +17,7 @@ def register_middlewares(
     sessionmaker: async_sessionmaker[AsyncSession],
     default_locale: str,
 ) -> None:
+    from .analytics import AnalyticsMiddleware
     from .database import DatabaseMiddleware
     from .dependency import DependencyMiddleware
     from .i18n import UserManager
@@ -25,6 +26,8 @@ def register_middlewares(
     from .user_register import UserRegisterMiddleware
 
     dp.message.outer_middleware(ThrottlingMiddleware())
+
+    dp.update.outer_middleware(AnalyticsMiddleware())
 
     dp.update.outer_middleware(LoggingMiddleware())
 

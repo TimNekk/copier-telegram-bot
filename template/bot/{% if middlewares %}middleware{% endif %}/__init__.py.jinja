@@ -5,6 +5,7 @@
 {%- set ca = 'callback_answer' in middlewares -%}
 {%- set i1 = 'i18n' in middlewares -%}
 {%- set ur = 'user_register' in middlewares -%}
+{%- set an = 'analytics' in middlewares -%}
 from __future__ import annotations
 
 from typing import TYPE_CHECKING{% if dp %}, Any{% endif %}
@@ -39,7 +40,9 @@ def register_middlewares(
     default_locale: str,
 {%- endif %}
 ) -> None:
-{%- if db %}
+{%- if an %}
+    from .analytics import AnalyticsMiddleware
+{%- endif %}{%- if db %}
     from .database import DatabaseMiddleware
 {%- endif %}{%- if dp %}
     from .dependency import DependencyMiddleware
@@ -54,6 +57,8 @@ def register_middlewares(
 {%- endif %}
 {% if th %}
     dp.message.outer_middleware(ThrottlingMiddleware())
+{% endif %}{% if an %}
+    dp.update.outer_middleware(AnalyticsMiddleware())
 {% endif %}{% if lg %}
     dp.update.outer_middleware(LoggingMiddleware())
 {% endif %}{% if dp %}

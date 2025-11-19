@@ -6,12 +6,13 @@ from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram_dialog import StartMode
 
-from bot.states.exmaple import ExampleSG
+from bot.states.example import ExampleSG
 
 if TYPE_CHECKING:
     from aiogram import types
     from aiogram_dialog import DialogManager
     from aiogram_i18n import I18nContext
+    from posthog import Posthog
 
 router = Router(name=__name__)
 
@@ -21,7 +22,9 @@ async def handle_start_command(
     message: types.Message,
     dialog_manager: DialogManager,
     i18n: I18nContext,
+    posthog: Posthog,
 ) -> None:
+    posthog.capture(event="command_used", properties={"command": "top"})
     await message.answer("👋")
 
     await message.answer(i18n.get("start"))

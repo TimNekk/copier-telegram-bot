@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydantic import DirectoryPath, {% if 'throttling' in middlewares %}NonNegativeFloat, {% endif %}{% if 'redis' in features or database == 'postgres' %}PositiveInt, {% endif %}SecretStr{% if database == 'postgres' %}, computed_field{% endif %}
+from pydantic import DirectoryPath, {% if 'throttling' in middlewares %}NonNegativeFloat, {% endif %}{% if 'redis' in features or database == 'postgres' or product_analytics == 'posthog' %}PositiveInt, {% endif %}SecretStr{% if database == 'postgres' %}, computed_field{% endif %}
 from pydantic_settings import BaseSettings as PydanticBaseSettings
 from pydantic_settings import SettingsConfigDict
 
@@ -38,6 +38,10 @@ class PostgresSettings(BaseSettings):
 {{ '\n\n' }}{% endif %}{% if 'redis' in features -%}
 class RedisSettings(BaseSettings):
     port: PositiveInt
+{{ '\n\n' }}{% endif %}{% if product_analytics == 'posthog' -%}
+class PosthogSettings(BaseSettings):
+    project_api_key: SecretStr
+    host: str
 {{ '\n\n' }}{% endif -%}
 class Settings(BaseSettings):
     bot: BotSettings
@@ -47,6 +51,9 @@ class Settings(BaseSettings):
 {%- endif %}
 {%- if 'redis' in features %}
     redis: RedisSettings
+{%- endif %}
+{%- if product_analytics == 'posthog' %}
+    posthog: PosthogSettings
 {%- endif %}
 
     model_config = SettingsConfigDict(env_nested_delimiter="__")

@@ -24,6 +24,7 @@ _tasks:
               "{% if database == 'postgres' %}sqlalchemy{% endif %}",
               "{% if 'cache-decorator' in features %}orjson{% endif %}",
               "{% if 'i18n' in features %}aiogram-i18n[compiler]{% endif %}",
+              "{{ product_analytics }}",
           ]
     - command: ["{{ _copier_python }}", "tasks/uv_install.py"]
       when: "{{ package_manager == 'uv' }}"
@@ -130,9 +131,9 @@ python_version:
     type: str
     help: What version of Python do you want to use?
     choices:
-        "3.14":
-            value: "3.14"
-            validator: "{% if package_manager in ['poetry', 'pip'] and not '3.14'|is_installed %}not installed{% endif %}"
+        # "3.14":
+        #     value: "3.14"
+        #     validator: "{% if package_manager in ['poetry', 'pip'] and not '3.14'|is_installed %}not installed{% endif %}"
         "3.13":
             value: "3.13"
             validator: "{% if package_manager in ['poetry', 'pip'] and not '3.13'|is_installed %}not installed{% endif %}"
@@ -206,10 +207,10 @@ middlewares:
     choices:
         "Dependency        | Inject required dependencies into handler's data":
             value: "dependency"
-        "Logging           | Detailed logging of all telegram bot events and updates":
-            value: "logging"
         "Throttling        | Rate limit handling to prevent spam and abuse":
             value: "throttling"
+        "Logging           | Detailed logging of all telegram bot events and updates":
+            value: "logging"
         "Database          | Database session management with transactional safety":
             value: "database"
             validator: "{% if not database %}No database selected{% endif %}"
@@ -218,6 +219,7 @@ middlewares:
         "User Register     | Add user to database on /start":
             value: "user_register"
             validator: "{% if not database %}No database selected{% elif 'user' not in models %}User model not selected{% endif %}"
+    default: [dependency, throttling]
     validator: "{% if 'throttling' in middlewares and 'dependency' not in middlewares %}Dependency middleware is required to use Throttling middleware{% elif 'user_register' in middlewares and 'database' not in middlewares %}Database middleware is required to use User Register middleware{% endif %}"
 
 linter:
@@ -237,6 +239,16 @@ settings_manager:
             value: "pydantic-settings"
         "Dynaconf          | Multi-source configuration manager with environment-aware settings":
             value: "dynaconf"
+
+product_analytics:
+    type: str
+    help: Which product analytics do you want to use?
+    choices:
+        "PostHog           | Open-source product analytics platform":
+            value: "posthog"
+            validator: "{% if 'dependency' not in middlewares %}Dependency middleware is required to use PostHog{% endif %}"
+        "None              | Skip product analytics configuration":
+            value: ""
 
 dependency_bot:
     type: str

@@ -10,7 +10,9 @@ from bot.services import user as user_service
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
-
+{% if product_analytics == 'posthog' %}
+    from posthog import Posthog
+{%- endif %}
     from sqlalchemy.ext.asyncio import AsyncSession
 
 T = TypeVar("T")
@@ -47,6 +49,25 @@ class UserRegisterMiddleware(BaseMiddleware):
                 deep_link=deep_link,
 {%- endif %}
             )
+{% if product_analytics == 'posthog' %}
+            posthog: Posthog = data["posthog"]
+            posthog.capture(
+                event="user_registered",
+                properties={
+                    "$set": {
+                        "username": tg_user.username,
+                        "first_name": tg_user.first_name,
+                        "last_name": tg_user.last_name,
+                        "has_blocked_bot": False,
+                    },
+{%- if deep_link %}
+                    "$set_once": {
+                        "deep_link": deep_link,
+                    },
+{%- endif %}
+                },
+            )
+{%- endif %}
             logger.info(f"user {user.id} added to database")
 
         return await handler(event, data)

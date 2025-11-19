@@ -79,5 +79,4 @@ async def set_has_blocked_bot(
         return
 
     await session.execute(update(UserModel).where(UserModel.id == user_id).values(has_blocked_bot=has_blocked_bot))
-
     await clear_cache(get_user, user_id)
