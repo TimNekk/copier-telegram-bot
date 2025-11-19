@@ -1,0 +1,6 @@
+project_name: Example Bot
+project_slug: example-bot
+project_version: 0.1.0
+project_description: Telegram bot that is just an example
+project_author_name: Timofey Kochetov
+project_author_email: herew26@gmail.com
