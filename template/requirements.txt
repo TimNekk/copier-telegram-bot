@@ -5,7 +5,7 @@ alembic==1.18.1
 dynaconf==3.2.12
 loguru==0.7.3
 orjson==3.11.5
-posthog==7.5.1
+posthog==7.6.0
 psycopg[binary]==3.3.2
 pydantic-settings==2.12.0
 redis==7.1.0
