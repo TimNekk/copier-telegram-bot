@@ -4,7 +4,7 @@ aiogram-i18n[compiler]==1.4
 alembic==1.18.3
 dynaconf==3.2.12
 loguru==0.7.3
-orjson==3.11.5
+orjson==3.11.7
 posthog==7.8.0
 psycopg[binary]==3.3.2
 pydantic-settings==2.12.0
