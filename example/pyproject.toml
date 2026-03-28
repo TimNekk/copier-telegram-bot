@@ -11,7 +11,7 @@ dependencies = [
     "aiogram-i18n[compiler]==1.4",
     "alembic==1.17.2",
     "loguru==0.7.3",
-    "orjson==3.11.4",
+    "orjson==3.11.6",
     "posthog==7.0.1",
     "psycopg[binary]==3.2.12",
     "pydantic-settings==2.12.0",
