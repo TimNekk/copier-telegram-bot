@@ -1,5 +1,5 @@
 aiogram==3.27.0
-aiogram-dialog==2.5.0
+aiogram-dialog==2.6.0
 aiogram-i18n[compiler]==1.5
 alembic==1.18.4
 dynaconf==3.2.13
