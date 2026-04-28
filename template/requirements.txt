@@ -11,4 +11,4 @@ pydantic-settings==2.14.0
 redis==7.4.0
 sqlalchemy==2.0.49
 uvloop==0.22.1 ; sys_platform != "win32"
-winloop==0.6.2 ; sys_platform == "win32"
+winloop==0.6.3 ; sys_platform == "win32"
