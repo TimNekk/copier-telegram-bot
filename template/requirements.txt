@@ -9,6 +9,6 @@ posthog==7.18.3
 psycopg[binary]==3.3.4
 pydantic-settings==2.14.1
 redis==8.0.0
-sqlalchemy==2.0.50
+sqlalchemy==2.0.51
 uvloop==0.22.1 ; sys_platform != "win32"
 winloop==0.6.3 ; sys_platform == "win32"
