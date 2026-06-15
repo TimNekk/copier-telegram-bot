@@ -1,4 +1,4 @@
-aiogram==3.28.2
+aiogram==3.29.0
 aiogram-dialog==2.6.0
 aiogram-i18n[compiler]==1.5
 alembic==1.18.4
