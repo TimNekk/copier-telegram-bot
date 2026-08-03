@@ -8,7 +8,7 @@ orjson==3.11.9
 posthog==7.29.0
 psycopg[binary]==3.3.4
 pydantic-settings==2.14.2
-redis==8.0.1
+redis==8.1.0
 sqlalchemy==2.0.51
 uvloop==0.22.1 ; sys_platform != "win32"
 winloop==0.6.3 ; sys_platform == "win32"
