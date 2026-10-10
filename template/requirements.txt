@@ -1,11 +1,11 @@
-aiogram==3.30.0
+aiogram==3.31.0
 aiogram-dialog==2.6.0
 aiogram-i18n[compiler]==1.5
 alembic==1.20.0
 dynaconf==3.3.4
 loguru==0.7.3
 orjson==3.11.9
-posthog==7.37.3
+posthog==7.63.0
 psycopg[binary]==3.3.6
 pydantic-settings==2.14.2
 redis==8.1.0
