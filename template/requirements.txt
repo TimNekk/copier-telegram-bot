@@ -6,7 +6,7 @@ dynaconf==3.3.4
 loguru==0.7.3
 orjson==3.11.9
 posthog==7.63.0
-psycopg[binary]==3.3.4
+psycopg[binary]==3.3.6
 pydantic-settings==2.14.2
 redis==8.1.0
 sqlalchemy==2.1.3
