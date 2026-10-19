@@ -7,7 +7,7 @@ loguru==0.7.3
 orjson==3.11.9
 posthog==7.67.0
 psycopg[binary]==3.3.6
-pydantic-settings==2.14.2
+pydantic-settings==2.16.0
 redis==8.1.0
 sqlalchemy==2.1.4
 uvloop==0.23.0 ; sys_platform != "win32"
